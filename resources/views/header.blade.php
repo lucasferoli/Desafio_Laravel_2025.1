@@ -19,9 +19,15 @@
 
   <body>
     <header style="background-color: cyan; padding: 10px;">
-    <nav class="nav-bar">
-     <h1>header</h1>
-    </nav>
+      <nav class="nav-bar">
+        <div style="display: flex; justify-content: space-between;">
+          <a href="/historicoDeCompras" class="historicoDeCompras" style="flex: 1; text-align: center; font-size: 1.5em; padding: 10px;">Historico De Compras</a>
+          <a href="/paginaDeProduto" class="paginaDeProduto" style="flex: 1; text-align: center; font-size: 1.5em; padding: 10px;">Pagina De Produto</a>
+          <a href="/seuPerfil" class="seuPerfil" style="flex: 1; text-align: center; font-size: 1.5em; padding: 10px;">Seu Perfil</a>
+          <div class="saldo" style="flex: 1; text-align: center; font-size: 1.5em; padding: 10px;">
+            <span>Saldo: R$ 1000,00</span>
+          </div>
+        </div>
+      </nav>
     </header>
-
-</body>
+  </body>
