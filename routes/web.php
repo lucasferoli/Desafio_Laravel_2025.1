@@ -3,8 +3,20 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/penis', function () {
-    return view('welcome');
+Route::get('/historicoDeCompras', function () {
+    return view('historicoDeCompras');
+});
+
+Route::get('/homePage', function () {
+    return view('homePage');
+});
+
+Route::get('/login', function () {
+    return view('login');
+});
+
+Route::get('/paginaDeProduto', function () {
+    return view('paginaDeProduto');
 });
 
 Route::get('/painelAdm', function () {

@@ -18,5 +18,5 @@
 </head>
 
 <body>
-<h1>painelAdm</h1>
+<h1>historicoDeCompras</h1>
 </body>
