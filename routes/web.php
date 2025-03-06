@@ -7,6 +7,22 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/painelAdm', function () {
+    return view('painelAdm');
+});
+
+Route::get('/historicoDeCompras', function () {
+    return view('historicoDeCompras');
+});
+
+Route::get('/paginaDeProduto', function () {
+    return view('paginaDeProduto');
+});
+
+Route::get('/adicionarProduto', function () {
+    return view('adicionarProduto');
+});
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
@@ -18,3 +34,4 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
+
