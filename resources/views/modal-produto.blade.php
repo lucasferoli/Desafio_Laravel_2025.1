@@ -1,17 +1,17 @@
-<x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Dashboard') }}
-        </h2>
-    </x-slot>
-
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900 dark:text-gray-100">
-                    {{ __("You're logged in!") }}
-                </div>
-            </div>
-        </div>
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body bg-yellow-500 border border-black">
+    <div class="product-image">
+        <img src="path/to/image.jpg" alt="Product Image" class="img-fluid">
     </div>
-</x-app-layout>
+    <div class="product-details">
+        <h4 class="product-name">Nome do Produto</h4>
+        <p class="product-price">R$ 00,00</p>
+    </div>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-primary">Ver Mais</button>
+</div>

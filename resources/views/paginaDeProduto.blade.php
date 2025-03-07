@@ -16,9 +16,17 @@
     rel="stylesheet" />
   <link rel="icon" href="../../../public/assets/favicon-logo-sem-nome.png" type="image/png">
 </head>
-
+<header>@include('header')</header>
 <body>
-<h1 class="bg-red-500">Pagina de Produtos</h1>
-
+  <h1 class="bg-red-500">Pagina de Produtos</h1>
+<div class="flex space-x-4">
+  @for ($i = 0; $i < 5; $i++)
+    <div class="flex-1">
+      <div class="outline outline-1 outline-gray-500">
+        @include('modal-produto')
+      </div>
+    </div>
+  @endfor
+</div>
 </body>
 </html>
