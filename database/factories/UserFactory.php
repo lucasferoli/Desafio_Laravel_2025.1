@@ -1,6 +1,4 @@
 <?php
-// filepath: c:\Users\User\Desktop\Desafio Laravel - 2025.1\Desafio_Laravel_2025.1-1\database\factories\UserFactory.php
-<?php
 
 namespace Database\Factories;
 
@@ -15,16 +13,25 @@ class UserFactory extends Factory
     public function definition()
     {
         return [
-            'nome' => $this->faker->name,
+            'name' => $this->faker->name,
             'email' => $this->faker->unique()->safeEmail,
             'password' => bcrypt('password'), // or use Hash::make('password')
-            'endereco' => $this->faker->address,
-            'telefone' => $this->faker->phoneNumber,
-            'data_nascimento' => $this->faker->date,
-            'cpf' => $this->faker->cpf,
-            'foto' => $this->faker->imageUrl,
-            'saldo' => $this->faker->randomFloat(2, 0, 10000),
-            'remember_token' => Str::random(10),
+            'address' => $this->faker->address,
+            'telephone' => $this->faker->phoneNumber,
+            'birth_date' => $this->faker->date,
+            'cpf' => $this->generateCpf(),
+            'photo' => $this->faker->imageUrl,
+            'balance' => $this->faker->randomFloat(2, 0, 10000),
         ];
     }
+
+    private function generateCpf()
+    {
+        $cpf = '';
+        for ($i = 0; $i < 9; $i++) {
+            $cpf .= $this->faker->numberBetween(0, 9);
+        }
+        return $cpf;
+    }
 }
+

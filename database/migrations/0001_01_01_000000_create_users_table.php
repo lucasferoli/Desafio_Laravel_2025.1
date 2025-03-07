@@ -13,15 +13,15 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('nome');
+            $table->string('name');
             $table->string('email')->unique();
-            $table->string('senha');
-            $table->string('endereço');
-            $table->string('telefone');
-            $table->date('data_nascimento');
+            $table->string('password');
+            $table->string('address');
+            $table->string('telephone');
+            $table->date('birth_date');
             $table->string('cpf')->unique();
-            $table->decimal('saldo', 15, 2);
-            $table->string('foto')->nullable();
+            $table->decimal('balance', 15, 2);
+            $table->string('photo')->nullable();
             $table->timestamps();
         });
 

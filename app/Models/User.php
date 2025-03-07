@@ -1,28 +1,37 @@
 <?php
 
-namespace Database\Factories;
+namespace App\Models;
 
-use App\Models\User;
-use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Str;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 
-class UserFactory extends Factory
+class User extends Authenticatable
 {
-    protected $model = User::class;
+    use HasFactory, Notifiable;
 
-    public function definition()
+    protected $fillable = [
+        'name',
+        'email',
+        'password',
+        'address',
+        'telephone',
+        'birth_date',
+        'cpf',
+        'photo',
+        'balance',
+    ];
+
+    protected $hidden = [
+        'password',
+        'remember_token',
+    ];
+
+    protected function casts(): array
     {
         return [
-            'nome' => $this->faker->name,
-            'email' => $this->faker->unique()->safeEmail,
-            'password' => bcrypt('password'), // or use Hash::make('password')
-            'endereco' => $this->faker->address,
-            'telefone' => $this->faker->phoneNumber,
-            'data_nascimento' => $this->faker->date,
-            'cpf' => $this->faker->cpf,
-            'foto' => $this->faker->imageUrl,
-            'saldo' => $this->faker->randomFloat(2, 0, 10000),
-            'remember_token' => Str::random(10),
+            'email_verified_at' => 'datetime',
+            'password' => 'hashed',
         ];
     }
 }

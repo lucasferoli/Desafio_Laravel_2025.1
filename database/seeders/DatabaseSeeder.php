@@ -20,18 +20,20 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        User::factory(6)->create([
-            'nome' => $this->faker->name,
-            'email' => $this->faker->unique()->safeEmail,
-            'password' => bcrypt('password'),
-            'endereco' => $this->faker->address,
-            'telefone' => $this->faker->phoneNumber,
-            'data_nascimento' => $this->faker->date,
-            'cpf' => $this->faker->cpf,
-            'saldo' => $this->faker->randomFloat(2, 0, 10000),
-            'foto' => $this->faker->imageUrl,
-            'created_at' => now(),
-            'updated_at' => now(),
-        ]);
+        User::factory(6)->create()->each(function ($user) {
+            $user->update([
+                'name' => $this->faker->name,
+                'email' => $this->faker->unique()->safeEmail,
+                'password' => bcrypt('password'),
+                'address' => $this->faker->address,
+                'telephone' => $this->faker->phoneNumber,
+                'birth_date' => $this->faker->date,
+                'cpf' => $this->faker->numerify('#########'),
+                'balance' => $this->faker->randomFloat(2, 0, 10000),
+                'photo' => $this->faker->imageUrl,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]);
+        });
     }
 }
