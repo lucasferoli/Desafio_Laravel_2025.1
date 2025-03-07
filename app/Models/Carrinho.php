@@ -4,7 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class carrinho extends Model
+class Carrinho extends Model
 {
-    //
+    protected $table = 'carrinhos';
+
+    protected $fillable = [
+        'user_id',
+    ];
 }

@@ -13,15 +13,22 @@ return new class extends Migration
     {
         Schema::create('produtoscarrinho', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('produto_id');
+            $table->unsignedBigInteger('carrinho_id');
+            $table->integer('quantidade_produto');
             $table->timestamps();
+
+            // Ensuring foreign key references the correct table
+            $table->foreign('produto_id')->references('id')->on('products')->onDelete('cascade');
+            $table->foreign('carrinho_id')->references('id')->on('carrinhos')->onDelete('cascade');
         });
     }
 
-    /**
+        /**
      * Reverse the migrations.
      */
     public function down(): void
     {
-        Schema::dropIfExists('produtoscarrinho');
+        Schema::dropIfExists('movimentacoes');
     }
 };

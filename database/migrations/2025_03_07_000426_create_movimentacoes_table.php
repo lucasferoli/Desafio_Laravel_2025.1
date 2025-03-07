@@ -13,7 +13,16 @@ return new class extends Migration
     {
         Schema::create('movimentacoes', function (Blueprint $table) {
             $table->id();
+            $table->string('numero_pedido');
+            $table->unsignedBigInteger('produto_id');
+            $table->unsignedBigInteger('comprador_id');
+            $table->integer('quantidade_produto');
+            $table->date('data');
             $table->timestamps();
+
+            // Assuming produto_id and comprador_id are foreign keys
+            $table->foreign('produto_id')->references('id')->on('products')->onDelete('cascade');
+            $table->foreign('comprador_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 
