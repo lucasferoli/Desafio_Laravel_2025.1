@@ -1,54 +1,28 @@
 <?php
 
-namespace App\Models;
+namespace Database\Factories;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
+use App\Models\User;
+use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Str;
 
-class User extends Authenticatable
+class UserFactory extends Factory
 {
-    /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasFactory, Notifiable;
+    protected $model = User::class;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var list<string>
-     */
-    protected $fillable = [
-        'nome',
-        'email',
-        'password',
-        'endereco',
-        'telefone',
-        'data_nascimento',
-        'cpf',
-        'foto',
-        'saldo',
-    ];
-
-    /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var list<string>
-     */
-    protected $hidden = [
-        'password',
-        'remember_token',
-    ];
-
-    /**
-     * Get the attributes that should be cast.
-     *
-     * @return array<string, string>
-     */
-    protected function casts(): array
+    public function definition()
     {
         return [
-            'email_verified_at' => 'datetime',
-            'password' => 'hashed',
+            'nome' => $this->faker->name,
+            'email' => $this->faker->unique()->safeEmail,
+            'password' => bcrypt('password'), // or use Hash::make('password')
+            'endereco' => $this->faker->address,
+            'telefone' => $this->faker->phoneNumber,
+            'data_nascimento' => $this->faker->date,
+            'cpf' => $this->faker->cpf,
+            'foto' => $this->faker->imageUrl,
+            'saldo' => $this->faker->randomFloat(2, 0, 10000),
+            'remember_token' => Str::random(10),
         ];
     }
 }
