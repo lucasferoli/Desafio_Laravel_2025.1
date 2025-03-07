@@ -5,7 +5,7 @@
 </div>
 <div class="modal-body bg-yellow-500 border border-black">
     <div class="product-image">
-        <img src="path/to/image.jpg" alt="Product Image" class="img-fluid">
+        <img src="{{ asset('resources\views\Placeholder.png') }}" alt="Product Image" class="img-fluid">
     </div>
     <div class="product-details">
         <h4 class="product-name">Nome do Produto</h4>
@@ -15,3 +15,5 @@
 <div class="modal-footer">
     <button type="button" class="btn btn-primary">Ver Mais</button>
 </div>
+<div class="flex lg:justify-center lg:col-start-2">
+  </div>

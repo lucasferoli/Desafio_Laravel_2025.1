@@ -14,7 +14,6 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Roboto&display=swap"
     rel="stylesheet" />
-  <link rel="icon" href="../../../public/assets/favicon-logo-sem-nome.png" type="image/png">
 </head>
 
 <body>
@@ -28,14 +27,13 @@
           <span>Saldo: R$ 1000,00</span>
         </div>
         @if (Route::has('login'))
-          @auth
-            <a href="{{ url('/dashboard') }}" style="flex: 1; text-align: center; font-size: 1.5em; padding: 10px; color: black;">Dashboard</a>
-          @else
-            <a href="{{ route('login') }}" style="flex: 1; text-align: center; font-size: 1.5em; padding: 10px; color: black;">Log in</a>
-            @if (Route::has('register'))
-              <a href="{{ route('register') }}" style="flex: 1; text-align: center; font-size: 1.5em; padding: 10px; color: black;">Register</a>
-            @endif
-          @endauth
+          <div style="flex: 1; text-align: center; font-size: 1.5em; padding: 10px;">
+            @auth
+              <a href="{{ url('/dashboard') }}" style="color: black;">Dashboard</a>
+            @else
+              <a href="{{ route('login') }}" style="color: black;">Log in</a>
+            @endauth
+          </div>
         @endif
       </div>
     </nav>
