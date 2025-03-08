@@ -24,8 +24,11 @@ Route::get('/adicionarProduto', function () {
     return view('adicionarProduto');
 });
 
-// Route to show a random product
+
+
 Route::get('/random-product', [ProductController::class, 'showRandomProduct']);
+Route::get('/product/{id}', [ProductController::class, 'showDetails'])->name('product.details');
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');
