@@ -4,7 +4,6 @@ namespace Database\Factories;
 
 use App\Models\Admin;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Str;
 
 class AdminFactory extends Factory
 {
@@ -13,14 +12,14 @@ class AdminFactory extends Factory
     public function definition()
     {
         return [
-            'nome' => $this->faker->name,
+            'name' => $this->faker->name,
             'email' => $this->faker->unique()->safeEmail,
-            'senha' => bcrypt('password'), // or use Hash::make('password')
-            'endereco' => $this->faker->address,
-            'telefone' => $this->faker->phoneNumber,
-            'data_nascimento' => $this->faker->date,
+            'password' => bcrypt('password'), // or use Hash::make('password')
+            'address' => $this->faker->address,
+            'telephone' => $this->faker->phoneNumber,
+            'birthday_date' => $this->faker->date,
             'cpf' => $this->faker->numerify('###########'), // Generates a random 11-digit number
-            'foto' => $this->faker->optional()->imageUrl,
+            'photo' => $this->faker->optional()->imageUrl,
         ];
     }
 }

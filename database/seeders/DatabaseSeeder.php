@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use App\Models\User;
+use App\Models\Admin;
 use Faker\Factory as Faker;
 
 class DatabaseSeeder extends Seeder
@@ -31,6 +32,20 @@ class DatabaseSeeder extends Seeder
                 'cpf' => $this->faker->numerify('#########'),
                 'balance' => $this->faker->randomFloat(2, 0, 10000),
                 'photo' => $this->faker->imageUrl,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]);
+        });
+
+        Admin::factory(6)->create()->each(function ($admin) {
+            $admin->update([
+                'name' => 'Admin Name',
+                'password' => bcrypt('adminpassword'),
+                'address' => $this->faker->address,
+                'telephone' => $this->faker->phoneNumber,
+                'birthday_date' => $this->faker->date,
+                'cpf' => $this->faker->numerify('#########'),
+                'photo' => $this->faker->optional()->imageUrl,
                 'created_at' => now(),
                 'updated_at' => now(),
             ]);

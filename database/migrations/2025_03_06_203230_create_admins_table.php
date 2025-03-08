@@ -19,11 +19,11 @@ return new class extends Migration
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
-            $table->string('endereco');
-            $table->string('telefone');
-            $table->date('data_nascimento');
+            $table->string('address');
+            $table->string('telephone');
+            $table->date('birthday_date');
             $table->string('cpf')->unique();
-            $table->string('foto')->nullable();
+            $table->string('photo')->nullable();
         });
     }
 
