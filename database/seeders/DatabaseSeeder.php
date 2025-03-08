@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use App\Models\User;
 use App\Models\Admin;
+use App\Models\Product;
 use Faker\Factory as Faker;
 
 class DatabaseSeeder extends Seeder
@@ -46,6 +47,20 @@ class DatabaseSeeder extends Seeder
                 'birthday_date' => $this->faker->date,
                 'cpf' => $this->faker->numerify('#########'),
                 'photo' => $this->faker->optional()->imageUrl,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]);
+        });
+
+        Product::factory(6)->create()->each(function ($product) {
+            $product->update([
+                'photo' => $this->faker->optional()->imageUrl,
+                'name' => $this->faker->word,
+                'price' => $this->faker->randomFloat(2, 1, 1000),
+                'quantity' => $this->faker->numberBetween(1, 100),
+                'description' => $this->faker->sentence,
+                'category' => $this->faker->word,
+                'advertiser_id' => User::inRandomOrder()->first()->id, 
                 'created_at' => now(),
                 'updated_at' => now(),
             ]);

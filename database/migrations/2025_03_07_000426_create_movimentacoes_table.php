@@ -21,7 +21,7 @@ return new class extends Migration
             $table->timestamps();
 
             // Assuming produto_id and comprador_id are foreign keys
-            $table->foreign('produto_id')->references('id')->on('products')->onDelete('cascade');
+            $table->foreign('produto_id')->references('id')->on('product')->onDelete('cascade');
             $table->foreign('comprador_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
