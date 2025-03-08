@@ -8,13 +8,13 @@ class Admin extends Model
 {
     protected $fillable = [
         'id',
-        'nome',
-        'email',
+        'name',
+        'password',
         'senha',
-        'endereco',
-        'telefone',
-        'data_nascimento',
+        'address',
+        'telephone',
+        'birthday_date',
         'cpf',
-        'foto', // opcional
+        'photo', // opcional
     ];
 }
