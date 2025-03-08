@@ -5,15 +5,17 @@
 </div>
 <div class="modal-body bg-yellow-500 border border-black">
     <div class="product-image">
-        <img src="{{ asset('resources\views\Placeholder.png') }}" alt="Product Image" class="img-fluid">
+
+        <img src="{{ asset($randomProduct->image_path) }}" alt="Product Image" class="img-fluid">
     </div>
     <div class="product-details">
-        <h4 class="product-name">Nome do Produto</h4>
-        <p class="product-price">R$ 00,00</p>
+
+        <h4 class="product-name">{{ $randomProduct->name }}</h4>
+
+        <p class="product-price">R$ {{ number_format($randomProduct->price, 2, ',', '.') }}</p>
     </div>
 </div>
 <div class="modal-footer">
-    <button type="button" class="btn btn-primary">Ver Mais</button>
+
+    <a href="{{ route('product.details', $randomProduct->id) }}" class="btn btn-primary">Ver Mais</a>
 </div>
-<div class="flex lg:justify-center lg:col-start-2">
-  </div>
