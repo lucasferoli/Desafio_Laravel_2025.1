@@ -38,10 +38,11 @@ class DatabaseSeeder extends Seeder
             ]);
         });
 
-        Admin::factory(6)->create()->each(function ($admin) {
+        Admin::factory(1)->create()->each(function ($admin, $index) {
             $admin->update([
-                'name' => 'Admin Name',
-                'password' => bcrypt('adminpassword'),
+                'name' => $index === 0 ? 'Lucas' : 'Admin Name',
+                'email' => $index === 0 ? 'lucas@gmail.com' : $this->faker->unique()->safeEmail,
+                'password' => $index === 0 ? bcrypt('lucas1234') : bcrypt('adminpassword'),
                 'address' => $this->faker->address,
                 'telephone' => $this->faker->phoneNumber,
                 'birthday_date' => $this->faker->date,

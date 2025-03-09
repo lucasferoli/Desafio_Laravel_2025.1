@@ -53,10 +53,11 @@ class RegisteredUserController extends Controller
             'photo' => $request->file('photo') ? $request->file('photo')->store('photos', 'public') : null,
         ]);
 
+
         event(new Registered($user));
 
         Auth::login($user);
 
-        return redirect()->route('dashboard', [], false);
+        return redirect(route('dashboard', absolute: false));
     }
 }
