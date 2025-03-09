@@ -8,12 +8,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
+use Illuminate\Support\Facades\Log;
 
 class ProfileController extends Controller
 {
-    /**
-     * Display the user's profile form.
-     */
     public function edit(Request $request): View
     {
         return view('profile.edit', [
@@ -21,40 +19,48 @@ class ProfileController extends Controller
         ]);
     }
 
-    /**
-     * Update the user's profile information.
-     */
     public function update(ProfileUpdateRequest $request): RedirectResponse
     {
-        $request->user()->fill($request->validated());
+        try {
+            $request->user()->fill($request->validated());
 
-        if ($request->user()->isDirty('email')) {
-            $request->user()->email_verified_at = null;
+            if ($request->user()->isDirty('email')) {
+                $request->user()->email_verified_at = null;
+            }
+
+            $request->user()->save();
+
+            return Redirect::route('profile.edit')->with('status', 'profile-updated');
+        } catch (\Exception $e) {
+            Log::error('Profile update failed: ' . $e->getMessage());
+
+            return Redirect::route('profile.edit')
+                ->with('error', 'Ocorreu um erro ao atualizar o perfil. Por favor, tente novamente.');
         }
-
-        $request->user()->save();
-
-        return Redirect::route('profile.edit')->with('status', 'profile-updated');
     }
 
-    /**
-     * Delete the user's account.
-     */
     public function destroy(Request $request): RedirectResponse
     {
         $request->validateWithBag('userDeletion', [
             'password' => ['required', 'current_password'],
         ]);
 
-        $user = $request->user();
+        try {
+            $user = $request->user();
 
-        Auth::logout();
+            Auth::logout();
 
-        $user->delete();
+            $user->delete();
 
-        $request->session()->invalidate();
-        $request->session()->regenerateToken();
+            $request->session()->invalidate();
+            $request->session()->regenerateToken();
 
-        return Redirect::to('/');
+            return Redirect::to('/');
+        } catch (\Exception $e) {
+            Log::error('Account deletion failed: ' . $e->getMessage());
+
+            return Redirect::route('profile.edit')
+                ->with('error', 'Ocorreu um erro ao excluir a conta. Por favor, tente novamente.');
+        }
     }
 }

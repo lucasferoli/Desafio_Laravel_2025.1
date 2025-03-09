@@ -27,6 +27,10 @@ Route::get('/adicionarProduto', function () {
 });
 
 
+Route::get('/paginaDoPerfil', function () {
+    return view('paginaDoPerfil');
+});
+
 
 Route::get('/random-product', [ProductController::class, 'showRandomProduct']);
 

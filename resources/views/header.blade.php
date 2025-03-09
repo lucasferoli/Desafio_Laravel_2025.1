@@ -21,8 +21,8 @@
     <nav class="nav-bar">
       <div style="display: flex; justify-content: space-between;">
         <a href="/historicoDeCompras" class="historicoDeCompras" style="flex: 1; text-align: center; font-size: 1.5em; padding: 10px; color: black;">Historico De Compras</a>
-        <a href="/paginaDeProduto" class="paginaDeProduto" style="flex: 1; text-align: center; font-size: 1.5em; padding: 10px; color: black;">Pagina De Produto</a>
-        <a href="/seuPerfil" class="seuPerfil" style="flex: 1; text-align: center; font-size: 1.5em; padding: 10px; color: black;">Seu Perfil</a>
+        <a href="/" class="paginaDeProduto" style="flex: 1; text-align: center; font-size: 1.5em; padding: 10px; color: black;">Pagina De Produto</a>
+        <a href="/paginaDoPerfil" class="seuPerfil" style="flex: 1; text-align: center; font-size: 1.5em; padding: 10px; color: black;">Seu Perfil</a>
         <div class="saldo" style="flex: 1; text-align: center; font-size: 1.5em; padding: 10px; color: black;">
           <span>Saldo: R$ 1000,00</span>
         </div>

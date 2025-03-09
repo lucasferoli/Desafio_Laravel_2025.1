@@ -1,3 +1,5 @@
+<header>@include('header')</header>
+
 <div class="container">
     <div class="row">
         <div class="col-md-6">
@@ -13,5 +15,7 @@
             <p><strong>Anunciante:</strong> {{ $product->advertiser->name }}</p>
             <p><strong>Data de Criação:</strong> {{ $product->created_at->format('d/m/Y H:i') }}</p>
         </div>
+        <button class="btn btn-primary mt-3">Comprar</button>
+
     </div>
 </div>
