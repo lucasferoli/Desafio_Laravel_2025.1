@@ -47,7 +47,7 @@
           id="name"
           name="name"
           type="text"
-          value="{{ old('name', $user->name) }}"
+          value="{{ old('name') }}"
           required
           autofocus
         />
@@ -70,49 +70,45 @@
         @enderror
       </div>
 
-      <!-- Address -->
       <div class="form-group">
         <label for="address">Endereço</label>
         <input
           id="address"
           name="address"
           type="text"
-          value="{{ old('address', $user->address) }}"
+          value="{{ old('address') }}"
         />
         @error('address')
           <span class="error">{{ $message }}</span>
         @enderror
       </div>
 
-      <!-- Telephone -->
       <div class="form-group">
         <label for="telephone">Telefone</label>
         <input
           id="telephone"
           name="telephone"
           type="text"
-          value="{{ old('telephone', $user->telephone) }}"
+          value="{{ old('telephone') }}"
         />
         @error('telephone')
           <span class="error">{{ $message }}</span>
         @enderror
       </div>
 
-      <!-- Photo -->
       <div class="form-group">
         <label for="photo">Foto (URL)</label>
         <input
           id="photo"
           name="photo"
           type="url"
-          value="{{ old('photo', $user->photo) }}"
+          value="{{ old('photo') }}"
         />
         @error('photo')
           <span class="error">{{ $message }}</span>
         @enderror
       </div>
 
-      <!-- Submit Button -->
       <div class="form-group">
         <button type="submit">Salvar Alterações</button>
       </div>
