@@ -6,9 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Notifications\Notifiable;
 
-class product extends Model
+class Product extends Model
 {
     use HasFactory, Notifiable;
+
     protected $table = 'product';
     
     protected $fillable = [
@@ -21,4 +22,9 @@ class product extends Model
         'category', 
         'advertiser_id'
     ];
+
+    public function advertiser()
+    {
+        return $this->belongsTo(User::class, 'advertiser_id');
+    }
 }

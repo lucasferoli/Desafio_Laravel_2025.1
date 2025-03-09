@@ -4,6 +4,8 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
 
+
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -27,7 +29,10 @@ Route::get('/adicionarProduto', function () {
 
 
 Route::get('/random-product', [ProductController::class, 'showRandomProduct']);
-Route::get('/product/{id}', [ProductController::class, 'showDetails'])->name('product.details');
+
+Route::get('/product/details/{id}', [ProductController::class, 'showDetails'])->name('product.details');
+
+Route::get('/product/{id}', [ProductController::class, 'show'])->name('product.show');
 
 
 Route::get('/dashboard', function () {

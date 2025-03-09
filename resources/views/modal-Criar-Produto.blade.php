@@ -17,7 +17,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary">Ver Mais</button>
+                <a href="{{ url('/product/individual-page') }}" class="btn btn-primary">Ver Mais</a>
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
             </div>
         </div>

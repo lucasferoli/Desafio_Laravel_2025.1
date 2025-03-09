@@ -1,32 +1,16 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
+@extends('layouts.app')
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Pagina de Posts</title>
-  <link rel="stylesheet" href="../../../resources/css/pagina-de-produtos.css" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Lobster&display=swap"
-    rel="stylesheet" />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Roboto&display=swap"
-    rel="stylesheet" />
-  <link rel="icon" href="../../../public/assets/favicon-logo-sem-nome.png" type="image/png">
-</head>
-<header>@include('header')</header>
-<body>
-  <h1 class="bg-red-500">Pagina de Produtos</h1>
-<div class="flex space-x-4">
-  @for ($i = 0; $i < 5; $i++)
-    <div class="flex-1">
-      <div class="outline outline-1 outline-gray-500">
-        @include('modal-produto')
-      </div>
+@section('content')
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <img src="{{ asset($product->image_path) }}" alt="{{ $product->name }}" class="img-fluid">
+        </div>
+        <div class="col-md-6">
+            <h1>{{ $product->name }}</h1>
+            <p class="price">R$ {{ number_format($product->price, 2, ',', '.') }}</p>
+            <p>{{ $product->description }}</p>
+        </div>
     </div>
-  @endfor
 </div>
-</body>
-</html>
+@endsection
