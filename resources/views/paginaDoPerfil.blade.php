@@ -19,6 +19,7 @@
 
 <body>
   <div class="container">
+    <header>@include('header')</header>
     <h1>Editar Perfil</h1>
 
     <!-- Success Message -->
