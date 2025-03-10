@@ -23,12 +23,15 @@ class AuthenticatedSessionController extends Controller
     /**
      * Handle an incoming authentication request.
      */
-public function store(LoginRequest $request): RedirectResponse
+
+     public function store(LoginRequest $request):RedirectResponse
 {
     if (Auth::guard('web')->attempt($request->only(['email', 'password']))) {
-        return redirect()->route('Dashboard');
+        return redirect()->route('dashboard'); 
+
     } elseif (Auth::guard('admin')->attempt($request->only(['email', 'password']))) {
         return redirect()->route('painelAdm');
+
     }
     return back()->withErrors('Deu pau na credencial chefia');
 }
