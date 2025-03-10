@@ -10,9 +10,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
 Route::get('/painelAdm', function () {
     return view('painelAdm');
-});
+ })->middleware(['auth', 'admin']);
+
 
 Route::get('/historicoDeCompras', function () {
     return view('historicoDeCompras');

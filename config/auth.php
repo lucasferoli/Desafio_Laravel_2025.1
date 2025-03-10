@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\Admin;
+
 return [
 
     /*
@@ -42,6 +44,17 @@ return [
         ],
     ],
 
+
+    'api' => [
+        'driver' => 'token',
+        'provider' => 'users',
+    ],
+
+    'admin' => [
+        'driver' => 'session',
+        'provider' => 'admin',
+    ],
+
     /*
     |--------------------------------------------------------------------------
     | User Providers
@@ -65,12 +78,16 @@ return [
             'model' => env('AUTH_MODEL', App\Models\User::class),
         ],
 
-        // 'users' => [
-        //     'driver' => 'database',
-        //     'table' => 'users',
-        // ],
+        'admin' => [
+            'driver' => 'eloquent',
+            'model' => env('AUTH_MODEL', App\Models\Admin::class),
+        ],
     ],
 
+
+
+
+    
     /*
     |--------------------------------------------------------------------------
     | Resetting Passwords
@@ -113,3 +130,6 @@ return [
     'password_timeout' => env('AUTH_PASSWORD_TIMEOUT', 10800),
 
 ];
+
+
+

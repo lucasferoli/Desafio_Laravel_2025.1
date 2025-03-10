@@ -16,6 +16,9 @@
     rel="stylesheet" />
     <link rel="icon" href="../../../public/assets/favicon-logo-sem-nome.png" type="image/png">
 </head>
+<body>
+<h1>Bem vindo, {{ auth()->guard('admin')->user()->name }}</h1>
+</body>
 
 <body>
 <h1>painelAdm</h1>
