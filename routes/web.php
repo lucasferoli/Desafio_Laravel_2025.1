@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UsersController;
+use App\Http\Controllers\SacarController;
 
 
 
@@ -20,6 +21,16 @@ Route::get('/painelAdm', function () {
 
 Route::get('/admAdministrador', function () {
     return view('admAdministrador');})->middleware('auth:admin')->name('admAdministrador');
+
+
+
+
+Route::get('/paginaDeSaque', function () {
+        return view('paginaDeSaque');
+    })->middleware('auth')->name('paginaDeSaque');
+
+
+Route::post('/sacar', [SacarController::class, 'sacar'])->name('sacar')->middleware('auth');
 
 
 Route::get('/historicoDeCompras', function () {

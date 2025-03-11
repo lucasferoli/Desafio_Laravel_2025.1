@@ -66,7 +66,7 @@
         <div style="flex: 1; text-align: center; font-size: 1.5em; padding: 10px; color: black;">
           @auth
             @if(auth()->guard('web')->check())
-              <span>Saldo: R$ {{ auth()->user()->saldo }}</span>
+              <a href="/paginaDeSaque" style="color: black;">Saldo: R$ {{ auth()->user()->balance }}</a>
             @elseif(auth()->guard('admin')->check())
               <a href="/painelAdm" style="color: black;">Painel Adm</a>
             @endif
