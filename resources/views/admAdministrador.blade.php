@@ -39,7 +39,7 @@
                     <th>Actions</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody>V
                 @foreach($admins as $admin)
                     <tr>
                         <td>{{ $admin->id }}</td>

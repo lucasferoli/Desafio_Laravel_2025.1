@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\UsersController;
 
 
 
@@ -13,8 +14,9 @@ Route::get('/', function () {
 Route::get('/painelAdm', function () {
     return view('painelAdm');})->middleware('auth:admin')->name('painelAdm');
 
-Route::get('/admUsuarios', function () {
-    return view('admUsuarios');})->middleware('auth:admin')->name('admUsuarios');
+    Route::get('/admUsuarios', [UsersController::class, 'index'])
+    ->middleware('auth:admin')
+    ->name('admUsuarios');
 
 Route::get('/admAdministrador', function () {
     return view('admAdministrador');})->middleware('auth:admin')->name('admAdministrador');
