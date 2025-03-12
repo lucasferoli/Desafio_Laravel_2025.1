@@ -6,6 +6,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\SacarController;
 use App\Http\Controllers\ProdutoCarrinhoController;
+use App\Http\Controllers\ContactController;
 
 
 //Home
@@ -94,7 +95,11 @@ Route::get('/product/details/{id}', [ProductController::class, 'showDetails'])->
 
 Route::get('/product/{id}', [ProductController::class, 'show'])->name('product.show');
 
+//Rotas para e-mail
+Route::get('/contact',[ContactController::class,'index'])->name('contact.index');
+Route::post('/contact',[ContactController::class,'store'])->name('contact.store');
 
+//Dashboard
 Route::get('/dashboard', function () {
     return view('welcome');
 })->middleware(['auth', 'verified'])->name('dashboard');
