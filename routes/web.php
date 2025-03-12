@@ -43,6 +43,7 @@ Route::get('/admAdministrador', function () {
 Route::middleware('auth')->group(function () {
     Route::get('/user/profile', [ProfileController::class, 'edit'])->name('usuarioEditar');
     Route::patch('/user/profile', [ProfileController::class, 'update'])->name('usuarioUpdate');
+    Route::delete('/user/profile', [ProfileController::class, 'delete'])->name('usuarioDelete');
 });
 
 
@@ -98,6 +99,7 @@ Route::get('/dashboard', function () {
     return view('welcome');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+//Editar proprio perfil
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

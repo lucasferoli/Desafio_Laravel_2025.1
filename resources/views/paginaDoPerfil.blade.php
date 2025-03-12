@@ -81,29 +81,28 @@
 
 
     <div class="modal fade" id="deleteUserModal" tabindex="-1" aria-labelledby="deleteUserModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="deleteUserModalLabel">Deletar Perfil</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="deleteUserModalLabel">Deletar Perfil</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <h5>Você tem certeza que deseja deletar o seu Perfil? Esta ação é Irreversível.</h5>
+            <form action="{{ route('usuarioDelete', auth()->user()) }}" method="Delete">
+              @csrf
+              @method('DELETE')
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+              <button type="submit" class="btn btn-danger">Deletar</button>
+            </form>
+          </div>
+        </div>
       </div>
-      <div class="modal-body">
-
-      </div>
-      </div>
-    </div>
     </div>
 
     <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      document.querySelectorAll('.view-user-btn').forEach(button => {
-        button.addEventListener('click', function () {
-          const userId = this.getAttribute('data-user-id');
-          const modal = new bootstrap.Modal(document.getElementById(`showUserModal${userId}`));
-          modal.show();
-        });
-      });
 
+      //Script para mostrar o modal editar do usuario se clicar em editar
       document.querySelectorAll('.edit-user-btn').forEach(button => {
         button.addEventListener('click', function () {
           const modal = new bootstrap.Modal(document.getElementById('editUserModal'));
@@ -111,13 +110,28 @@
         });
       });
 
+      //Script para mostrar modal excluir usuario se clicar em deletar
       document.querySelectorAll('.delete-user-btn').forEach(button => {
         button.addEventListener('click', function () {
           const modal = new bootstrap.Modal(document.getElementById('deleteUserModal'));
           modal.show();
         });
       });
-    });
+
+      //Script para esconder o modal caso clique no X defechar o modal
+      document.querySelectorAll('.btn-close').forEach(button => {
+        button.addEventListener('click', function () {
+          const modal = bootstrap.Modal.getInstance(button.closest('.modal'));
+          modal.hide();
+        });
+      });
+
+      document.querySelectorAll('.modal').forEach(modalElement => {
+        modalElement.addEventListener('hidden.bs.modal', function () {
+          document.body.classList.remove('modal-open');
+          document.querySelector('.modal-backdrop').remove();
+        });
+      });
     </script>
 </script>
 </body>
