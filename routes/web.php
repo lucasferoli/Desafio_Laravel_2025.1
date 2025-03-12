@@ -75,16 +75,17 @@ Route::get('/paginaDoPerfil', function () {
 });
 
 // Carrinho
-Route::get('/checkout', function () {
+Route::match(['get', 'post'], '/checkout', function () {
     return view('checkout');
 })->middleware('auth')->name('checkout');
 
-Route::post('/cart/add', [ProdutoCarrinhoController::class, 'addToCart'])->middleware('auth')->name('cart.add');
-Route::delete('/cart/remove', [ProdutoCarrinhoController::class, 'removeFromCart'])->middleware('auth')->name('cart.remove');
+Route::post('/cart/add', [ProdutoCarrinhoController::class, 'addToCart'])->middleware('auth')->name('cartAdd');
+
+Route::delete('/cart/remove', [ProdutoCarrinhoController::class, 'removeFromCart'])->middleware('auth')->name('cartRemove');
+
 Route::get('/carrinho', function () {
     return view('carrinho');
 })->middleware('auth')->name('carrinho');
-
 
 Route::get('/random-product', [ProductController::class, 'showRandomProduct']);
 
@@ -94,7 +95,7 @@ Route::get('/product/{id}', [ProductController::class, 'show'])->name('product.s
 
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    return view('welcome');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {

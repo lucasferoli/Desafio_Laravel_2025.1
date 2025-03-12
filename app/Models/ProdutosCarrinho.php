@@ -7,6 +7,9 @@ use App\Models\Carrinho;
 
 class ProdutosCarrinho extends Model
 {
+
+    protected $table = 'product';
+    
     protected $fillable = [
         'produto_id',
         'carrinho_id',

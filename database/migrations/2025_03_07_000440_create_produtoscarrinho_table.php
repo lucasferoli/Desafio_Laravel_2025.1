@@ -13,7 +13,7 @@ class CreateProdutosCarrinhoTable extends Migration
       */
      public function up()
      {
-          Schema::create('produtos_carrinho', function (Blueprint $table) {
+          Schema::create('produtoscarrinho', function (Blueprint $table) {
                 $table->id();
                 $table->unsignedBigInteger('produto_id');
                 $table->unsignedBigInteger('carrinho_id');
