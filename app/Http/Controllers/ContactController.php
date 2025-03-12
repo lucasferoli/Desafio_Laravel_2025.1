@@ -12,8 +12,15 @@ class ContactController extends Controller
     {
         return view('contact');
     }
-    public function store()
+    public function store(Request $request)
     {
-    Mail::to('lucasferoliveira.goval@gmail.com', 'lucas')->send(new Contact);
+    $sent = Mail::to('lucasferoliveira.goval@gmail.com', 'lucas')->send(new Contact([
+        'fromName' => $request->input('name'),
+        'fromEmail' => $request->input('email'),
+        'subject' => $request->input('subject'),
+        'message' => $request->input('message'),
+    ]));
+
+    var_dump('email sent', $sent);
     }
 }
