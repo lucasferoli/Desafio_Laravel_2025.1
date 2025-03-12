@@ -4,26 +4,34 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
+class CreateProdutosCarrinhoTable extends Migration
 {
-    /**
-     * Run the migrations.
-     */
-    public function up(): void
-    {
-        Schema::create('produtoscarrinho', function (Blueprint $table) {
-            $table->id();
-            $table->unsignedBigInteger('user_id');
-            $table->timestamps();
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-        });
-    }
+     /**
+      * Run the migrations.
+      *
+      * @return void
+      */
+     public function up()
+     {
+          Schema::create('produtos_carrinho', function (Blueprint $table) {
+                $table->id();
+                $table->unsignedBigInteger('produto_id');
+                $table->unsignedBigInteger('carrinho_id');
+                $table->integer('quantidade_produto');
+                $table->timestamps();
 
-    /**
-     * Reverse the migrations.
-     */
-    public function down(): void
-    {
-        Schema::dropIfExists('produtoscarrinho');
-    }
-};
+                $table->foreign('produto_id')->references('id')->on('product')->onDelete('cascade');
+                $table->foreign('carrinho_id')->references('id')->on('carrinho')->onDelete('cascade');
+          });
+     }
+
+     /**
+      * Reverse the migrations.
+      *
+      * @return void
+      */
+     public function down()
+     {
+          Schema::dropIfExists('produtos_carrinho');
+     }
+}

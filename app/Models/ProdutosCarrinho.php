@@ -3,24 +3,24 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Carrinho;
 
 class ProdutosCarrinho extends Model
 {
     protected $fillable = [
-        'product_id',
-        'cart_id',
-        'product_quantity',
+        'produto_id',
+        'carrinho_id',
+        'quantidade_produto',
     ];
 
     public function cart()
     {
-        return $this->belongsTo(Cart::class, 'cart_id');
+        return $this->belongsTo(Carrinho::class, 'carrinho_id');
     }
-
 
     public function product()
     {
-        return $this->belongsTo(Product::class, 'product_id');
+        return $this->belongsTo(Product::class, 'produto_id');
     }
 
     protected $table = 'produtos_carrinho';

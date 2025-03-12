@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Carrinho;
-use App\Models\ProdutoCarrinho;
+use App\Models\ProdutosCarrinho;
 use Illuminate\Support\Facades\Validator;
 
 class ProdutoCarrinhoController extends Controller
@@ -25,14 +25,14 @@ class ProdutoCarrinhoController extends Controller
         $produto_id = $request->produto_id;
         $quantidade = $request->quantidade;
 
-        $produtoCarrinho = ProdutoCarrinho::where('carrinho_id', $carrinho_id)
+        $produtoCarrinho = ProdutosCarrinho::where('carrinho_id', $carrinho_id)
             ->where('produto_id', $produto_id)
             ->first();
 
         if ($produtoCarrinho) {
             $produtoCarrinho->quantidade += $quantidade;
         } else {
-            $produtoCarrinho = new ProdutoCarrinho();
+            $produtoCarrinho = new ProdutosCarrinho();
             $produtoCarrinho->carrinho_id = $carrinho_id;
             $produtoCarrinho->produto_id = $produto_id;
             $produtoCarrinho->quantidade = $quantidade;

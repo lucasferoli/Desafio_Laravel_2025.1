@@ -5,16 +5,17 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\SacarController;
+use App\Http\Controllers\ProdutoCarrinhoController;
 
 
-
+//Home
 Route::get('/', function () {
     return view('welcome');
 });
 
 
 
-
+//Paineis ADM
 Route::get('/painelAdm', function () {
     return view('painelAdm');
 })->middleware('auth:admin')->name('painelAdm');
@@ -45,6 +46,8 @@ Route::middleware('auth')->group(function () {
 });
 
 
+
+//Pagina de Saque
 Route::get('/paginaDeSaque', function () {
         return view('paginaDeSaque');
     })->middleware('auth')->name('paginaDeSaque');
@@ -53,6 +56,7 @@ Route::get('/paginaDeSaque', function () {
 Route::post('/sacar', [SacarController::class, 'sacar'])->name('sacar')->middleware('auth');
 
 
+//Historico De Compras
 Route::get('/historicoDeCompras', function () {
     return view('historicoDeCompras');
 });
@@ -70,10 +74,16 @@ Route::get('/paginaDoPerfil', function () {
     return view('paginaDoPerfil');
 });
 
-
+// Carrinho
 Route::get('/checkout', function () {
     return view('checkout');
 })->middleware('auth')->name('checkout');
+
+Route::post('/cart/add', [ProdutoCarrinhoController::class, 'addToCart'])->middleware('auth')->name('cart.add');
+Route::delete('/cart/remove', [ProdutoCarrinhoController::class, 'removeFromCart'])->middleware('auth')->name('cart.remove');
+Route::get('/carrinho', function () {
+    return view('carrinho');
+})->middleware('auth')->name('carrinho');
 
 
 Route::get('/random-product', [ProductController::class, 'showRandomProduct']);
