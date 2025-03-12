@@ -12,17 +12,32 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/painelAdm', function () {
-    return view('painelAdm');})->middleware('auth:admin')->name('painelAdm');
 
-    Route::get('/admUsuarios', [UsersController::class, 'index'])
+
+
+Route::get('/painelAdm', function () {
+    return view('painelAdm');
+})->middleware('auth:admin')->name('painelAdm');
+
+Route::get('/admUsuarios', [UsersController::class, 'index'])
     ->middleware('auth:admin')
     ->name('admUsuarios');
 
+Route::post('/admUsuario', [UsersController::class, 'store'])
+    ->middleware('auth:admin')
+    ->name('createUser');
+
+Route::put('admUsuario/{user}', [UsersController::class, 'update'])
+    ->middleware('auth:admin')
+    ->name('updateUser');
+
+Route::delete('admUsuario/{user}', [UsersController::class, 'destroy'])
+    ->middleware('auth:admin')
+    ->name('deleteUser');
+
 Route::get('/admAdministrador', function () {
-    return view('admAdministrador');})->middleware('auth:admin')->name('admAdministrador');
-
-
+    return view('admAdministrador');
+})->middleware('auth:admin')->name('admAdministrador');
 
 
 Route::get('/paginaDeSaque', function () {
