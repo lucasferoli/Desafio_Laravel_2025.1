@@ -39,6 +39,11 @@ Route::get('/admAdministrador', function () {
     return view('admAdministrador');
 })->middleware('auth:admin')->name('admAdministrador');
 
+Route::middleware('auth')->group(function () {
+    Route::get('/user/profile', [ProfileController::class, 'edit'])->name('usuarioEditar');
+    Route::patch('/user/profile', [ProfileController::class, 'update'])->name('usuarioUpdate');
+});
+
 
 Route::get('/paginaDeSaque', function () {
         return view('paginaDeSaque');
@@ -64,6 +69,11 @@ Route::get('/adicionarProduto', function () {
 Route::get('/paginaDoPerfil', function () {
     return view('paginaDoPerfil');
 });
+
+
+Route::get('/checkout', function () {
+    return view('checkout');
+})->middleware('auth')->name('checkout');
 
 
 Route::get('/random-product', [ProductController::class, 'showRandomProduct']);

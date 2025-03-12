@@ -15,8 +15,15 @@
             <p><strong>Telefone do Anunciante:</strong> {{ $product->advertiser->telephone }}</p>
             <p><strong>Data de Criação:</strong> {{ $product->created_at->format('d/m/Y H:i') }}</p>
         </div>
-        <button class="btn btn-primary mt-3">Comprar</button>
-
+        <form method="POST" action="{{ route('checkout') }}">
+            @csrf
+            <input type="hidden" name="product" value="{{ json_encode($product) }}">
+            <div class="form-group">
+                <label for="quantity">Quantidade:</label>
+                <input type="number" name="quantity" id="quantity" class="form-control" min="1" max="{{ $product->quantity }}" value="1">
+            </div>
+            <button type="submit" class="btn btn-primary mt-3">Adicionar ao Carrinho</button>
+        </form>
     </div>
 </div>
 

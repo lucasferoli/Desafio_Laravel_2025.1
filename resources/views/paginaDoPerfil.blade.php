@@ -37,7 +37,7 @@
     @endif
 
     <!-- Profile Update Form -->
-    <form method="POST" action="{{ route('profile.update') }}">
+    <form method="POST" action="{{ route('usuarioUpdate', auth()->user()->id) }}">
       @csrf
       @method('PATCH')
 
@@ -48,7 +48,7 @@
           id="name"
           name="name"
           type="text"
-          value="{{ old('name') }}"
+          value="{{ old('name', auth()->user()->name) }}"
           required
           autofocus
         />
@@ -77,7 +77,7 @@
           id="address"
           name="address"
           type="text"
-          value="{{ old('address') }}"
+          value="{{ old('address', auth()->user()->address) }}"
         />
         @error('address')
           <span class="error">{{ $message }}</span>
@@ -90,7 +90,7 @@
           id="telephone"
           name="telephone"
           type="text"
-          value="{{ old('telephone') }}"
+          value="{{ old('telephone', auth()->user()->telephone) }}"
         />
         @error('telephone')
           <span class="error">{{ $message }}</span>
@@ -103,7 +103,7 @@
           id="photo"
           name="photo"
           type="url"
-          value="{{ old('photo') }}"
+          value="{{ old('photo', auth()->user()->photo) }}"
         />
         @error('photo')
           <span class="error">{{ $message }}</span>

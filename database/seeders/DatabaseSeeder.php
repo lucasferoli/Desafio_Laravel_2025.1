@@ -22,7 +22,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        User::factory(6)->create()->each(function ($user) {
+        $imagePath = 'C:/Users/User/Desktop/Desafio Laravel - 2025.1/Desafio_Laravel_2025.1-1/resources/assets/dava.jpeg';
+
+        User::factory(6)->create()->each(function ($user) use ($imagePath) {
             $user->update([
                 'name' => $this->faker->name,
                 'email' => $this->faker->unique()->safeEmail,
@@ -32,13 +34,13 @@ class DatabaseSeeder extends Seeder
                 'birth_date' => $this->faker->date,
                 'cpf' => $this->faker->numerify('#########'),
                 'balance' => $this->faker->randomFloat(2, 0, 10000),
-                'photo' => $this->faker->imageUrl,
+                'photo' => $imagePath,
                 'created_at' => now(),
                 'updated_at' => now(),
             ]);
         });
 
-        Admin::factory(1)->create()->each(function ($admin, $index) {
+        Admin::factory(1)->create()->each(function ($admin, $index) use ($imagePath) {
             $admin->update([
                 'name' => $index === 0 ? 'Lucas' : 'Admin Name',
                 'email' => $index === 0 ? 'lucas@gmail.com' : $this->faker->unique()->safeEmail,
@@ -47,15 +49,15 @@ class DatabaseSeeder extends Seeder
                 'telephone' => $this->faker->phoneNumber,
                 'birthday_date' => $this->faker->date,
                 'cpf' => $this->faker->numerify('#########'),
-                'photo' => $this->faker->optional()->imageUrl,
+                'photo' => $imagePath,
                 'created_at' => now(),
                 'updated_at' => now(),
             ]);
         });
 
-        Product::factory(6)->create()->each(function ($product) {
+        Product::factory(6)->create()->each(function ($product) use ($imagePath) {
             $product->update([
-                'photo' => $this->faker->optional()->imageUrl,
+                'photo' => $imagePath,
                 'name' => $this->faker->word,
                 'price' => $this->faker->randomFloat(2, 1, 1000),
                 'quantity' => $this->faker->numberBetween(1, 100),
