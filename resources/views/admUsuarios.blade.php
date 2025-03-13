@@ -34,7 +34,7 @@
                         <button type="button" class="btn btn-info view-user-btn" data-user-id="{{ $user->id }}">Visualizar</button>
                         <button type="button" class="btn btn-warning edit-user-btn" data-user-id="{{ $user->id }}">Editar</button>
                         <button type="button" class="btn btn-danger delete-user-btn" data-user-id="{{ $user->id }}">Deletar</button>
-                        <button type="button" class="btn btn-success">Mandar E-mail</button>
+                        <button type="button" class="btn btn-success" data-user-id="{{ $user->id }}">Mandar E-mail</button>
                     </td>
                 </tr>
                 @endforeach
@@ -135,9 +135,49 @@
             </div>
         </div>
     </div>
-    @endforeach
 
     
+<!-- Modal de Contato -->
+<div class="modal fade" id="contactModal" tabindex="-1" aria-labelledby="contactModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="contactModalLabel">Contato</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="{{ route('contact.store') }}" method="post">
+                    @csrf
+
+                  <input type="email" name="recipient_email" id="recipient_email" required value="{{ $user->email }}">
+                <label for="recipient_user"> Recipient Name:</label>
+                    <input type="text" name="recipient_user" id="recipient_user" required value="{{ $user->name }}">
+                    
+                    
+                    <div class="form-group">
+                        <label for="name">Nome</label>
+                        <input type="text" class="form-control" id="name" name="name" value="{{ Auth::user()->name }}" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" class="form-control" id="email" name="email" value="{{ Auth::user()->email }}" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="subject">Assunto</label>
+                        <input type="text" class="form-control" id="subject" name="subject" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Mensagem</label>
+                        <textarea class="form-control" id="message" name="message" rows="5" required> </textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Enviar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+    @endforeach
 
     <div class="modal fade" id="createUserModal" tabindex="-1" aria-labelledby="createUserModalLabel" aria-hidden="true">
       <div class="modal-dialog">
@@ -200,40 +240,6 @@
     </div>
   </div>
 
-
-<!-- Modal de Contato -->
-<div class="modal fade" id="contactModal" tabindex="-1" aria-labelledby="contactModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="contactModalLabel">Contato</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <form action="{{ route('contact.store') }}" method="post">
-                    @csrf
-                    <div class="form-group">
-                        <label for="name">Nome</label>
-                        <input type="text" class="form-control" id="name" name="name" value="{{ Auth::user()->name }}" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="email" class="form-control" id="email" name="email" value="{{ Auth::user()->email }}" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="subject">Assunto</label>
-                        <input type="text" class="form-control" id="subject" name="subject" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="message">Mensagem</label>
-                        <textarea class="form-control" id="message" name="message" rows="5" required> </textarea>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Enviar</button>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
 
 <script>
     document.addEventListener('DOMContentLoaded', function () {

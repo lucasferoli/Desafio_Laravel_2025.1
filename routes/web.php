@@ -81,14 +81,6 @@ Route::match(['get', 'post'], '/checkout', function () {
     return view('checkout');
 })->middleware('auth')->name('checkout');
 
-Route::post('/cart/add', [ProdutoCarrinhoController::class, 'addToCart'])->middleware('auth')->name('cartAdd');
-
-Route::delete('/cart/remove', [ProdutoCarrinhoController::class, 'removeFromCart'])->middleware('auth')->name('cartRemove');
-
-Route::get('/carrinho', function () {
-    return view('carrinho');
-})->middleware('auth')->name('carrinho');
-
 Route::get('/random-product', [ProductController::class, 'showRandomProduct']);
 
 Route::get('/product/details/{id}', [ProductController::class, 'showDetails'])->name('product.details');
