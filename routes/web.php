@@ -105,6 +105,10 @@ Route::get('/product/details/{id}', [ProductController::class, 'showDetails'])->
 
 Route::get('/product/{id}', [ProductController::class, 'show'])->name('product.show');
 
+Route::get('/erroDePagamento', function () {
+    return view('erroDePagamento');
+});
+
 //Rotas para mandar e-mail
 Route::middleware('auth:admin')->group(function () {
     Route::get('/contact', [ContactController::class, 'index'])->name('contact.index');
