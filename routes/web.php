@@ -21,6 +21,7 @@ Route::get('/painelAdm', function () {
     return view('painelAdm');
 })->middleware('auth:admin')->name('painelAdm');
 
+//Painel ADM Usuario
 Route::get('/admUsuarios', [UsersController::class, 'index'])
     ->middleware('auth:admin')
     ->name('admUsuarios');
@@ -40,6 +41,23 @@ Route::delete('admUsuario/{user}', [UsersController::class, 'destroy'])
 Route::get('/admAdministrador', function () {
     return view('admAdministrador');
 })->middleware('auth:admin')->name('admAdministrador');
+
+//Painel ADM Administrador
+Route::get('/admAdministradores', [UsersController::class, 'index'])
+    ->middleware('auth:admin')
+    ->name('admAdministradores');
+
+Route::post('/admAdministrador', [UsersController::class, 'store'])
+    ->middleware('auth:admin')
+    ->name('createAdministrador');
+
+Route::put('admAdministrador/{admin}', [UsersController::class, 'update'])
+    ->middleware('auth:admin')
+    ->name('updateAdministrador');
+
+Route::delete('admAdministrador/{admin}', [UsersController::class, 'destroy'])
+    ->middleware('auth:admin')
+    ->name('deleteAdministrador');
 
 Route::middleware('auth')->group(function () {
     Route::get('/user/profile', [ProfileController::class, 'edit'])->name('usuarioEditar');
