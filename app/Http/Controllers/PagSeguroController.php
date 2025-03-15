@@ -21,7 +21,7 @@ class PagSeguroController extends Controller
         // Busca o ID do produto na tabela e traz os produtos para cá
         $products = Product::whereIn('id', $produto_id)->get();
 
-        $quantidadeProduto = request('quantidade_produto', 1); 
+        $quantidadeProduto = request('quantidade_produto', 1);
 
         $items = $products->map(function ($product) use ($quantidadeProduto) {
             return [
@@ -39,25 +39,32 @@ class PagSeguroController extends Controller
             'items' => $items
         ]);
 
-        
         if ($response->successful()) {
-            foreach ($products as $product) {
 
+            //Atualiza quantidade do produto na tabela
+            foreach ($products as $product) {
                 if ($product->quantity >= $quantidadeProduto) {
                     $product->quantity -= $quantidadeProduto;
                     $product->save();
                 } else {
                     return redirect()->route('erroDePagamento')->withErrors([
-                        'quantidade_produto' => 'Quantidade solicitada não disponível para o produto: ' 
-                        . $product->name]);
+                        'quantidade_produto' => 'Quantidade solicitada não disponível para o produto: ' . $product->name
+                    ]);
+                }
+
+                //Atualiza saldo de quem vendeu o produto
+                $valorTotal = $product->price * $quantidadeProduto;
+                $anunciante = $product->advertiser;
+                $anunciante->balance += $valorTotal;
+                $anunciante->save();
 
                 Movimentacoes::create([
                     'reference_id' => $response['reference_id'],
                     'status' => 1,
                     'product_id' => $product->id,
                     'buyer_id' => $request->user()->id,
-                    'product_quantity' => $quantidadeProduto, 
-                    'date' => now() 
+                    'product_quantity' => $quantidadeProduto,
+                    'date' => now()
                 ]);
             }
             $pay_link = data_get($response->json(), 'links.1.href');
@@ -66,5 +73,4 @@ class PagSeguroController extends Controller
 
         return redirect('erroDePagamento');
     }
-}
 }

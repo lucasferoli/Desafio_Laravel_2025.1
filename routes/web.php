@@ -108,7 +108,7 @@ Route::get('/product/{id}', [ProductController::class, 'show'])->name('product.s
 
 Route::get('/erroDePagamento', function () {
     return view('erroDePagamento');
-});
+})->name('erroDePagamento');
 
 Route::post('/checkout', [PagSeguroController::class, 'createCheckout']);
 
