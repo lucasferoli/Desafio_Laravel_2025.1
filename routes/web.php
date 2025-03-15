@@ -5,9 +5,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\SacarController;
-use App\Http\Controllers\ProdutoCarrinhoController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\PagSeguroController;
+use App\Http\Controllers\MovimentacoesController;
 
 
 //Home
@@ -78,9 +78,9 @@ Route::post('/sacar', [SacarController::class, 'sacar'])->name('sacar')->middlew
 
 
 //Historico De Compras
-Route::get('/historicoDeCompras', function () {
-    return view('historicoDeCompras');
-});
+Route::get('/historico-compras', [MovimentacoesController::class, 'index'])
+    ->middleware('auth')
+    ->name('historico-compras');
 
 //Historico de Vendas
 Route::get('/historicoDeVendas', function () {

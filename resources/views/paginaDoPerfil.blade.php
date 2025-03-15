@@ -31,7 +31,7 @@
       <button type="button" class="btn btn-primary w-100">Ver Seus Anúncios</button>
       </div>
       <div class="col-md-4 mb-3">
-      <a href="/historicoDeCompras" class="btn btn-info w-100">Histórico de Compras</a>
+      <a href="/historico-compras" class="btn btn-info w-100">Histórico de Compras</a>
       </div>
       <div class="col-md-4 mb-3">
       <a href="/historicoDeVendas" class="btn btn-secondary w-100">Histórico de Vendas</a>

@@ -8,8 +8,12 @@ class Movimentacoes extends Model
 {
     protected $table = 'movimentacoes';
 
+    public function product()
+{
+    return $this->belongsTo(Product::class, 'product_id');
+}
+
     protected $fillable = [
-        'order_number',
         'product_id',
         'buyer_id',
         'product_quantity',
