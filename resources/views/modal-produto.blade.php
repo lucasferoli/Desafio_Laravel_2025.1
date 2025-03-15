@@ -1,8 +1,3 @@
-<div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-    </button>
-</div>
 <div class="modal-body bg-yellow-500 border border-black">
     <div class="product-image">
 

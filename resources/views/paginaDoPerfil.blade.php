@@ -23,8 +23,26 @@
     <header>@include('header')</header>
     <h1>Seu Perfil</h1>
 
-    <button type="button" class="btn btn-warning edit-user-btn" data-bs-toggle="modal" data-bs-target="#editUserModal">Editar seu Perfil</button>
-    <button type="button" class="btn btn-danger delete-user-btn" data-bs-toggle="modal" data-bs-target="#deleteUserModal">Deletar seu Perfil</button>
+    <div class="row">
+      <div class="col-md-4 mb-3">
+      <button type="button" class="btn btn-success w-100">Criar Anúncio</button>
+      </div>
+      <div class="col-md-4 mb-3">
+      <button type="button" class="btn btn-primary w-100">Ver Seus Anúncios</button>
+      </div>
+      <div class="col-md-4 mb-3">
+      <button type="button" class="btn btn-info w-100">Histórico de Compras</button>
+      </div>
+      <div class="col-md-4 mb-3">
+      <button type="button" class="btn btn-secondary w-100">Histórico de Vendas</button>
+      </div>
+      <div class="col-md-4 mb-3">
+      <button type="button" class="btn btn-warning edit-user-btn w-100" data-bs-toggle="modal" data-bs-target="#editUserModal">Editar seu Perfil</button>
+      </div>
+      <div class="col-md-4 mb-3">
+      <button type="button" class="btn btn-danger delete-user-btn w-100" data-bs-toggle="modal" data-bs-target="#deleteUserModal">Deletar seu Perfil</button>
+      </div>
+    </div>
 
     {{-- atualizar perfil --}}
     <div class="modal fade" id="editUserModal" tabindex="-1" aria-labelledby="editUserModalLabel" aria-hidden="true">

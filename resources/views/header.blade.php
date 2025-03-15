@@ -8,38 +8,45 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet" />
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" />
+  <style>
+    .azul-claro-background {
+      background-color: #00aaff;
+    }
+  </style>
 </head>
 
 <body>
-  <header style="background-color: cyan; padding: 10px;">
-    <nav class="nav-bar">
-      <div style="display: flex; justify-content: space-between;">
-        <a href="/historicoDeCompras" style="flex: 1; text-align: center; font-size: 1.5em; padding: 10px; color: black;">Histórico de Compras</a>
-        <a href="/" style="flex: 1; text-align: center; font-size: 1.5em; padding: 10px; color: black;">Página de Produto</a>
-        <div style="flex: 1; text-align: center; font-size: 1.5em; padding: 10px; color: black;">
+  <header class="azul-claro-background py-3">
+    <nav class="navbar navbar-expand-lg navbar-light">
+      <div class="container">
+        <a class="navbar-brand font-weight-bold" href="/historicoDeCompras">Histórico de Compras</a>
+        <a class="navbar-brand font-weight-bold" href="/">Página de Produto</a>
+        <div class="navbar-nav ml-auto">
           @auth
             @if(auth()->guard('web')->check())
-              <a href="/paginaDeSaque" style="color: black;">Saldo: R$ {{ auth()->user()->balance }}</a>
+              <a class="nav-item nav-link font-weight-bold" href="/paginaDeSaque">Saldo: R$ {{ auth()->user()->balance }}</a>
             @elseif(auth()->guard('admin')->check())
-              <a href="/painelAdm" style="color: black;">Painel Adm</a>
+              <a class="nav-item nav-link font-weight-bold" href="/painelAdm">Painel Adm</a>
             @endif
           @endauth
-        </div>
-        @if (Route::has('login'))
-          <div style="flex: 1; text-align: center; font-size: 1.5em; padding: 10px;">
+          @if (Route::has('login'))
             @auth
-              <a href="/paginaDoPerfil" style="color: black;">Ver Perfil</a>
-              <form id="logoutForm" action="{{ route('logout') }}" method="POST" style="display: inline;">
+              <a class="nav-item nav-link font-weight-bold" href="/paginaDoPerfil">Ver Perfil</a>
+              <form id="logoutForm" action="{{ route('logout') }}" method="POST" class="form-inline">
                 @csrf
-                <button type="submit" style="background: none; border: none; color: black; cursor: pointer;">Logout</button>
+                <button type="submit" class="btn btn-danger font-weight-bold">Logout</button>
               </form>
             @else
-              <a href="{{ route('login') }}" style="color: black;">Log in</a>
+              <a class="nav-item nav-link font-weight-bold" href="{{ route('login') }}">Log in</a>
             @endauth
-          </div>
-        @endif
+          @endif
+        </div>
       </div>
     </nav>
   </header>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>

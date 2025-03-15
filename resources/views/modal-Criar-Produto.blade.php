@@ -9,7 +9,7 @@
             </div>
             <div class="modal-body">
                 <div class="product-image">
-                    <img src="path/to/image.jpg" alt="Product Image" class="img-fluid">
+                    <img src="https://assets.portalleodias.com/2024/04/Davi-Brito-1.jpg" alt="Imagem do Produto" class="img-fluid">
                 </div>
                 <div class="product-details">
                     <h4 class="product-name">Nome do Produto</h4>
