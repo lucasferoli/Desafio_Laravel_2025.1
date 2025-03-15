@@ -34,7 +34,7 @@
       <a href="/historico-compras" class="btn btn-info w-100">Histórico de Compras</a>
       </div>
       <div class="col-md-4 mb-3">
-      <a href="/historicoDeVendas" class="btn btn-secondary w-100">Histórico de Vendas</a>
+      <a href="/historico-vendas" class="btn btn-secondary w-100">Histórico de Vendas</a>
       </div>
       <div class="col-md-4 mb-3">
       <button type="button" class="btn btn-warning edit-user-btn w-100" data-bs-toggle="modal" data-bs-target="#editUserModal">Editar seu Perfil</button>

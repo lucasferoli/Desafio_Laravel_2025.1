@@ -88,9 +88,14 @@ Route::get('/historico-compras-pdf', [MovimentacoesController::class, 'generateP
     ->name('historico-compras-pdf');
 
 //Historico de Vendas
-Route::get('/historicoDeVendas', function () {
-    return view('historicoDeVendas');
-});
+Route::get('/historico-vendas', [MovimentacoesController::class, 'indexVendas'])
+->middleware('auth')
+->name('historico-vendas');
+
+//PDF do Historico de Vendas
+Route::get('/historico-vendas-pdf', [MovimentacoesController::class, 'generateVendasPdf'])
+    ->middleware('auth')
+    ->name('historico-vendas-pdf');
 
 
 //Paginas Aleatorias

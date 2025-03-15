@@ -13,7 +13,6 @@ class MovimentacoesController extends Controller
     public function index()
     {
         $movimentacoes = Movimentacoes::where('buyer_id', Auth::id())->get();
-
         return view('historico-compras', compact('movimentacoes'));
     }
 
@@ -21,9 +20,27 @@ class MovimentacoesController extends Controller
     {
         $movimentacoes = Movimentacoes::where('buyer_id', Auth::id())->get();
         $data = ['movimentacoes' => $movimentacoes];
-
         $pdf = Pdf::loadView('historico-compras-pdf', $data);
-
         return $pdf->stream('historico-compras.pdf');
+    }
+
+    public function indexVendas()
+    {
+        $movimentacoes = Movimentacoes::join('product', 'movimentacoes.product_id', '=', 'product.id')
+            ->where('product.advertiser_id', Auth::id())
+            ->select('movimentacoes.*')
+            ->get();
+        return view('historico-vendas', compact('movimentacoes'));
+    }
+
+    public function generateVendasPdf()
+    {
+        $movimentacoes = Movimentacoes::join('product', 'movimentacoes.product_id', '=', 'product.id')
+            ->where('product.advertiser_id', Auth::id())
+            ->select('movimentacoes.*')
+            ->get();
+        $data = ['movimentacoes' => $movimentacoes];
+        $pdf = Pdf::loadView('historico-vendas-pdf', $data);
+        return $pdf->stream('historico-vendas.pdf');
     }
 }
