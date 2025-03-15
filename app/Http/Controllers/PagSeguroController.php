@@ -16,15 +16,17 @@ class PagSeguroController extends Controller
         $token = config('services.pagseguro.token');
 
         // Utilizamos o flatten para converter o Array Json em um array normal, que irá mandar as informações para o PagSeguro
-        $produto_id = Arr::flatten(json_decode($request->produto_id, true));
+        $produto_id = Arr::flatten((array) json_decode($request->input('produto_id'), true));
 
         // Busca o ID do produto na tabela e traz os produtos para cá
         $products = Product::whereIn('id', $produto_id)->get();
 
-        $items = $products->map(function ($product) {
+        $quantidadeProduto = request('quantidade_produto', 1); 
+
+        $items = $products->map(function ($product) use ($quantidadeProduto) {
             return [
                 'name' => $product->name,
-                'quantity' => 1,
+                'quantity' => $quantidadeProduto,
                 'unit_amount' => $product->price * 100,
             ];
         })->toArray();
@@ -38,22 +40,20 @@ class PagSeguroController extends Controller
         ]);
 
         if ($response->successful()) {
-            foreach ($produto_id as $id) {
+            foreach ($products as $product) {
                 Movimentacoes::create([
                     'reference_id' => $response['reference_id'],
                     'status' => 1,
-                    'product_id' => $id,
+                    'product_id' => $product->id,
                     'buyer_id' => $request->user()->id,
-                    'product_quantity' => 1, 
+                    'product_quantity' => $quantidadeProduto, 
                     'date' => now() 
                 ]);
             }
-
             $pay_link = data_get($response->json(), 'links.1.href');
             return redirect()->away($pay_link);
         }
 
         return redirect('erroDePagamento');
     }
-
 }
