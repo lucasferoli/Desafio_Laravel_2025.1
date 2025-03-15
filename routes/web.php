@@ -82,21 +82,24 @@ Route::get('/historico-compras', [MovimentacoesController::class, 'index'])
     ->middleware('auth')
     ->name('historico-compras');
 
+//PDF do Historico de Compras
+Route::get('/historico-compras-pdf', [MovimentacoesController::class, 'generatePdf'])
+    ->middleware('auth')
+    ->name('historico-compras-pdf');
+
 //Historico de Vendas
 Route::get('/historicoDeVendas', function () {
     return view('historicoDeVendas');
 });
 
+
 //Paginas Aleatorias
 Route::get('/paginaDeProduto', function () {
     return view('paginaDeProduto');
 });
-
 Route::get('/adicionarProduto', function () {
     return view('adicionarProduto');
 });
-
-
 Route::get('/paginaDoPerfil', function () {
     return view('paginaDoPerfil');
 });
