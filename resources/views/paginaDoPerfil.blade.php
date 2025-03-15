@@ -25,7 +25,7 @@
 
     <div class="row">
       <div class="col-md-4 mb-3">
-      <button type="button" class="btn btn-success w-100">Criar Anúncio</button>
+      <button type="button" class="btn btn-success w-100 criar-anuncio-btn" data-bs-toggle="modal" data-bs-target="#criarProdutoModal">Criar Anúncio</button>
       </div>
       <div class="col-md-4 mb-3">
       <button type="button" class="btn btn-primary w-100">Ver Seus Anúncios</button>
@@ -117,7 +117,49 @@
         </div>
       </div>
     </div>
-
+    <div class="modal fade" id="criarProdutoModal" tabindex="-1" aria-labelledby="criarProdutoModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+      <div class="modal-content">
+      <div class="modal-header">
+      <h5 class="modal-title" id="criarProdutoModalLabel">Criar Produto</h5>
+      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+      <form action="{{ route('criarproduto') }}" method="POST" enctype="multipart/form-data">
+        @csrf
+        <div class="mb-3">
+        <label for="foto" class="form-label">Foto do Produto</label>
+        <input type="file" class="form-control" id="foto" name="foto" accept="image/*" required>
+        </div>
+        <div class="mb-3">
+        <label for="nome" class="form-label">Nome do Produto</label>
+        <input type="text" class="form-control" id="nome" name="nome" required>
+        </div>
+        <div class="mb-3">
+        <label for="preco" class="form-label">Preço</label>
+        <input type="number" class="form-control" id="preco" name="preco" step="0.01" required>
+        </div>
+        <div class="mb-3">
+        <label for="quantidade" class="form-label">Quantidade</label>
+        <input type="number" class="form-control" id="quantidade" name="quantidade" required>
+        </div>
+        <div class="mb-3">
+        <label for="descricao" class="form-label">Descrição</label>
+        <textarea class="form-control" id="descricao" name="descricao" rows="3" required></textarea>
+        </div>
+        <div class="mb-3">
+        <label for="categoria" class="form-label">Categoria</label>
+        <input type="text" class="form-control" id="categoria" name="categoria" required>
+        </div>
+        <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+        <button type="submit" class="btn btn-primary">Criar Produto</button>
+        </div>
+      </form>
+      </div>
+      </div>
+      </div>
+    </div>
     <script>
 
       //Script para mostrar o modal editar do usuario se clicar em editar
@@ -132,6 +174,14 @@
       document.querySelectorAll('.delete-user-btn').forEach(button => {
         button.addEventListener('click', function () {
           const modal = new bootstrap.Modal(document.getElementById('deleteUserModal'));
+          modal.show();
+        });
+      });
+
+      //Script para mostrar modal criar anuncio se clicar em criar anuncio
+      document.querySelectorAll('.criar-anuncio-btn').forEach(button => {
+        button.addEventListener('click', function () {
+          const modal = new bootstrap.Modal(document.getElementById('criarProdutoModal'));
           modal.show();
         });
       });

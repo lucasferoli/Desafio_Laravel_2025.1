@@ -131,4 +131,9 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+//Criar Produto
+Route::post('/criarproduto', [ProductController::class, 'store'])->name('criarproduto');
+
+
+
 require __DIR__.'/auth.php';
