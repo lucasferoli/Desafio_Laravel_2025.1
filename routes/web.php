@@ -7,6 +7,7 @@ use App\Http\Controllers\UsersController;
 use App\Http\Controllers\SacarController;
 use App\Http\Controllers\ProdutoCarrinhoController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\PagSeguroController;
 
 
 //Home
@@ -108,6 +109,9 @@ Route::get('/product/{id}', [ProductController::class, 'show'])->name('product.s
 Route::get('/erroDePagamento', function () {
     return view('erroDePagamento');
 });
+
+Route::post('/checkout', [PagSeguroController::class, 'createCheckout']);
+
 
 //Rotas para mandar e-mail
 Route::middleware('auth:admin')->group(function () {

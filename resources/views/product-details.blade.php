@@ -27,7 +27,7 @@
             </div>
             <form action="/checkout" method="POST">
                 @csrf
-                <input type="hidden" name="produto_id" value="{{ json_encode($cartProducts) }}">
+                <input type="hidden" name="produto_id" value="{{ json_encode($product) }}">
                 <input type="number" name="quantidade_produto" id="quantity" class="form-control" min="1" max="{{ $product->quantity }}" value="1">
                 <button type="submit" class="btn btn-primary mt-3">Comprar</button>
             </form>
