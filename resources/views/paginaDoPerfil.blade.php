@@ -117,49 +117,53 @@
         </div>
       </div>
     </div>
+
+
     <div class="modal fade" id="criarProdutoModal" tabindex="-1" aria-labelledby="criarProdutoModalLabel" aria-hidden="true">
       <div class="modal-dialog">
       <div class="modal-content">
-      <div class="modal-header">
-      <h5 class="modal-title" id="criarProdutoModalLabel">Criar Produto</h5>
-      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-      <form action="{{ route('criarproduto') }}" method="POST" enctype="multipart/form-data">
-        @csrf
-        <div class="mb-3">
-        <label for="foto" class="form-label">Foto do Produto</label>
-        <input type="file" class="form-control" id="foto" name="foto" accept="image/*" required>
+        <div class="modal-header">
+        <h5 class="modal-title" id="criarProdutoModalLabel">Criar Produto</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        <div class="mb-3">
-        <label for="nome" class="form-label">Nome do Produto</label>
-        <input type="text" class="form-control" id="nome" name="nome" required>
+        <div class="modal-body">
+        <form action="{{ route('criarproduto') }}" method="POST" enctype="multipart/form-data">
+          @csrf
+          <div class="mb-3">
+          <label for="foto" class="form-label">Foto do Produto</label>
+          <input type="file" class="form-control" id="foto" name="foto" accept="image/*" required>
+          </div>
+          <div class="mb-3">
+          <label for="nome" class="form-label">Nome do Produto</label>
+          <input type="text" class="form-control" id="nome" name="nome" required>
+          </div>
+          <div class="mb-3">
+          <label for="preco" class="form-label">Preço</label>
+          <input type="number" class="form-control" id="preco" name="preco" step="0.01" required>
+          </div>
+          <div class="mb-3">
+          <label for="quantidade" class="form-label">Quantidade</label>
+          <input type="number" class="form-control" id="quantidade" name="quantidade" required>
+          </div>
+          <div class="mb-3">
+          <label for="descricao" class="form-label">Descrição</label>
+          <textarea class="form-control" id="descricao" name="descricao" rows="3" required></textarea>
+          </div>
+          <div class="mb-3">
+          <label for="categoria" class="form-label">Categoria</label>
+          <input type="text" class="form-control" id="categoria" name="categoria" required>
+          </div>
+          <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+          <button type="submit" class="btn btn-primary">Criar Produto</button>
+          </div>
+        </form>
         </div>
-        <div class="mb-3">
-        <label for="preco" class="form-label">Preço</label>
-        <input type="number" class="form-control" id="preco" name="preco" step="0.01" required>
-        </div>
-        <div class="mb-3">
-        <label for="quantidade" class="form-label">Quantidade</label>
-        <input type="number" class="form-control" id="quantidade" name="quantidade" required>
-        </div>
-        <div class="mb-3">
-        <label for="descricao" class="form-label">Descrição</label>
-        <textarea class="form-control" id="descricao" name="descricao" rows="3" required></textarea>
-        </div>
-        <div class="mb-3">
-        <label for="categoria" class="form-label">Categoria</label>
-        <input type="text" class="form-control" id="categoria" name="categoria" required>
-        </div>
-        <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-        <button type="submit" class="btn btn-primary">Criar Produto</button>
-        </div>
-      </form>
-      </div>
       </div>
       </div>
     </div>
+
+
     <script>
 
       //Script para mostrar o modal editar do usuario se clicar em editar

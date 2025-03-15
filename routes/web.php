@@ -132,7 +132,12 @@ Route::middleware('auth')->group(function () {
 });
 
 //Criar Produto
-Route::post('/criarproduto', [ProductController::class, 'store'])->name('criarproduto');
+Route::get('/admProdutos', [ProductController::class, 'index'])
+    ->middleware('auth')
+    ->name('admProdutos');
+
+Route::post('/criarproduto', [ProductController::class, 'store'])
+    ->name('criarproduto');
 
 
 
