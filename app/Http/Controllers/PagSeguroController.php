@@ -39,8 +39,18 @@ class PagSeguroController extends Controller
             'items' => $items
         ]);
 
+        
         if ($response->successful()) {
             foreach ($products as $product) {
+
+                if ($product->quantity >= $quantidadeProduto) {
+                    $product->quantity -= $quantidadeProduto;
+                    $product->save();
+                } else {
+                    return redirect()->route('erroDePagamento')->withErrors([
+                        'quantidade_produto' => 'Quantidade solicitada não disponível para o produto: ' 
+                        . $product->name]);
+
                 Movimentacoes::create([
                     'reference_id' => $response['reference_id'],
                     'status' => 1,
@@ -56,4 +66,5 @@ class PagSeguroController extends Controller
 
         return redirect('erroDePagamento');
     }
+}
 }
