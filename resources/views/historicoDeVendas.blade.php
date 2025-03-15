@@ -18,9 +18,8 @@
 </head>
 <header>@include('header')</header>
 <body>
-<h1>Historico de Compras!</h1>
+<h1>Historico de Vendas!</h1>
 
-<div id="modalCriar">
 
 
 </body>

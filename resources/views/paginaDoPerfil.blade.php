@@ -31,10 +31,10 @@
       <button type="button" class="btn btn-primary w-100">Ver Seus Anúncios</button>
       </div>
       <div class="col-md-4 mb-3">
-      <button type="button" class="btn btn-info w-100">Histórico de Compras</button>
+      <a href="/historicoDeCompras" class="btn btn-info w-100">Histórico de Compras</a>
       </div>
       <div class="col-md-4 mb-3">
-      <button type="button" class="btn btn-secondary w-100">Histórico de Vendas</button>
+      <a href="/historicoDeVendas" class="btn btn-secondary w-100">Histórico de Vendas</a>
       </div>
       <div class="col-md-4 mb-3">
       <button type="button" class="btn btn-warning edit-user-btn w-100" data-bs-toggle="modal" data-bs-target="#editUserModal">Editar seu Perfil</button>
@@ -118,7 +118,7 @@
       </div>
     </div>
 
-
+    {{-- Modal Criar Produto --}}
     <div class="modal fade" id="criarProdutoModal" tabindex="-1" aria-labelledby="criarProdutoModalLabel" aria-hidden="true">
       <div class="modal-dialog">
       <div class="modal-content">

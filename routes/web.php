@@ -82,6 +82,12 @@ Route::get('/historicoDeCompras', function () {
     return view('historicoDeCompras');
 });
 
+//Historico de Vendas
+Route::get('/historicoDeVendas', function () {
+    return view('historicoDeVendas');
+});
+
+//Paginas Aleatorias
 Route::get('/paginaDeProduto', function () {
     return view('paginaDeProduto');
 });
