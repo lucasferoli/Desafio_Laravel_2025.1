@@ -28,7 +28,7 @@
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
 
                     @php
-                        $products = App\Models\Product::orderBy('id')->take(6)->get();
+                        $products = App\Models\Product::orderBy('id')->take(24)->get();
                     @endphp
 
                     @foreach ($products as $product)
