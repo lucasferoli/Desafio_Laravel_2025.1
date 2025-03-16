@@ -13,7 +13,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-6">
-                <img src="{{ asset('resources/assets/Davi-Brito.jpg') }}" alt="{{ $product->name }}" class="img-fluid">
+                <img src="{{ asset('build/assets/Davi-Brito.jpg') }}" alt="{{ $product->name }}" class="img-fluid">
             </div>
             <div class="col-md-6">
                 <h1>{{ $product->name }}</h1>
