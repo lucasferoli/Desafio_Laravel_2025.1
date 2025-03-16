@@ -43,7 +43,7 @@ class DatabaseSeeder extends Seeder
         Admin::factory(1)->create()->each(function ($admin, $index) use ($imagePath) {
             $admin->update([
                 'name' => $index === 0 ? 'Lucas' : 'Admin Name',
-                'email' => $index === 0 ? 'lucas1@gmail.com' : $this->faker->unique()->safeEmail,
+                'email' => $index === 0 ? 'lucas@gmail.com' : $this->faker->unique()->safeEmail,
                 'password' => $index === 0 ? bcrypt('lucas1234') : bcrypt('adminpassword'),
                 'address' => $this->faker->address,
                 'telephone' => $this->faker->phoneNumber,

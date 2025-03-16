@@ -28,7 +28,7 @@
       <button type="button" class="btn btn-success w-100 criar-anuncio-btn" data-bs-toggle="modal" data-bs-target="#criarProdutoModal">Criar Anúncio</button>
       </div>
       <div class="col-md-4 mb-3">
-      <button type="button" class="btn btn-primary w-100">Ver Seus Anúncios</button>
+      <a href="/editarProdutos" class="btn btn-primary w-100">Ver Seus Anúncios</a>
       </div>
       <div class="col-md-4 mb-3">
       <a href="/historico-compras" class="btn btn-info w-100">Histórico de Compras</a>

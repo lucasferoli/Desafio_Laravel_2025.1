@@ -145,15 +145,25 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-//Criar Produto
-Route::get('/admProdutos', [ProductController::class, 'index'])
+//Rotas para controlar Produtos
+Route::get('/editarProdutos', [ProductController::class, 'index'])
     ->middleware('auth')
-    ->name('admProdutos');
+    ->name('editarProdutos');
 
 Route::post('/criarproduto', [ProductController::class, 'store'])
     ->name('criarproduto');
 
-//Editar Anuncios
+Route::post('/editarProdutos', [ProductController::class, 'store'])
+    ->middleware('auth')
+    ->name('createProduct');
+
+Route::put('editarProdutos/{product}', [ProductController::class, 'update'])
+    ->middleware('auth')
+    ->name('updateProduct');
+
+Route::delete('editarProdutos/{product}', [ProductController::class, 'destroy'])
+    ->middleware('auth')
+    ->name('deleteProduct');
 
 
 

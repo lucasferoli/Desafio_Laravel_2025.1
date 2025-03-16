@@ -11,7 +11,7 @@ class ProductController extends Controller
     public function index()
     {
         $products = Product::all();
-        return view('admProdutos', compact('products'));
+        return view('editarProdutos', compact('products'));
     }
 
     public function search(Request $request)
@@ -26,29 +26,72 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'foto' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'nome' => 'required|string|max:255',
-            'preco' => 'required|numeric|min:0',
-            'quantidade' => 'required|integer|min:0',
-            'descricao' => 'required|string',
-            'categoria' => 'required|string|max:255',
+            'photo' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'name' => 'required|string|max:255',
+            'price' => 'required|numeric|min:0',
+            'quantity' => 'required|integer|min:0',
+            'description' => 'required|string',
+            'category' => 'required|string|max:255',
+            'advertiser_id' => 'required|integer',
         ]);
 
-        if ($request->hasFile('foto')) {
-            $image = $request->file('foto');
+        if ($request->hasFile('photo')) {
+            $image = $request->file('photo');
             $imageName = time() . '.' . $image->getClientOriginalExtension();
             $image->storeAs('public/products', $imageName);
         }
 
         $product = new Product();
-        $product->foto = $imageName;
-        $product->nome = $request->input('nome');
-        $product->preco = $request->input('preco');
-        $product->quantidade = $request->input('quantidade');
-        $product->descricao = $request->input('descricao');
-        $product->categoria = $request->input('categoria');
+        $product->photo = $imageName;
+        $product->name = $request->input('name');
+        $product->price = $request->input('price');
+        $product->quantity = $request->input('quantity');
+        $product->description = $request->input('description');
+        $product->category = $request->input('category');
+        $product->advertiser_id = $request->input('advertiser_id');
         $product->save();
 
-        return redirect()->route('admProdutos')->with('success', 'Produto criado com sucesso!');
+        return redirect()->route('editarProdutos')->with('success', 'Produto criado com sucesso!');
+    }
+
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'photo' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'name' => 'required|string|max:255',
+            'price' => 'required|numeric|min:0',
+            'quantity' => 'required|integer|min:0',
+            'description' => 'required|string',
+            'category' => 'required|string|max:255',
+            'advertiser_id' => 'required|integer',
+        ]);
+
+        $product = Product::findOrFail($id);
+
+        if ($request->hasFile('photo')) {
+            $image = $request->file('photo');
+            $imageName = time() . '.' . $image->getClientOriginalExtension();
+            $image->storeAs('public/products', $imageName);
+            $product->photo = $imageName;
+        }
+
+        $product->name = $request->input('name');
+        $product->price = $request->input('price');
+        $product->quantity = $request->input('quantity');
+        $product->description = $request->input('description');
+        $product->category = $request->input('category');
+        $product->advertiser_id = $request->input('advertiser_id');
+        $product->save();
+
+        return redirect()->route('editarProdutos')->with('success', 'Produto atualizado com sucesso!');
+    }
+
+    public function destroy($id)
+    {
+        $product = Product::findOrFail($id);
+        Storage::delete('public/products/' . $product->photo);
+        $product->delete();
+
+        return redirect()->route('editarProdutos')->with('success', 'Produto deletado com sucesso!');
     }
 }
