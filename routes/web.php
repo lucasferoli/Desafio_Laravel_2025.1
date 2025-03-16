@@ -153,6 +153,8 @@ Route::get('/admProdutos', [ProductController::class, 'index'])
 Route::post('/criarproduto', [ProductController::class, 'store'])
     ->name('criarproduto');
 
+//Editar Anuncios
+
 
 
 require __DIR__.'/auth.php';
