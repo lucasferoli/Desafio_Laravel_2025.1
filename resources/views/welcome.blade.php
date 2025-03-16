@@ -27,15 +27,15 @@
                 <h1 class="bg-red-500">Pagina de Produtos</h1>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
 
-                    @for ($i = 0; $i < 5; $i++)
-                        @php
-                            $randomProduct = App\Models\Product::inRandomOrder()->first();
-                        @endphp
-                        
+                    @php
+                        $products = App\Models\Product::orderBy('id')->take(6)->get();
+                    @endphp
+
+                    @foreach ($products as $product)
                         <div class="outline outline-1 outline-gray-500">
-                            @include('modal-produto', ['randomProduct' => $randomProduct])
+                            @include('modal-produto', ['randomProduct' => $product])
                         </div>
-                    @endfor
+                    @endforeach
                 </div>
             </div>
         </div>

@@ -1,7 +1,7 @@
 <div class="modal-body bg-yellow-500 border border-black">
     <div class="product-image">
 
-        <img src="{{ asset($randomProduct->image_path) }}" alt="Product Image" class="img-fluid">
+        <img src="{{ asset('build/assets/Davi-Brito.jpg') }}" alt="Product Image" class="img-fluid">
     </div>
     <div class="product-details">
 

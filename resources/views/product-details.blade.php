@@ -25,12 +25,16 @@
                 <p><strong>Telefone do Anunciante:</strong> {{ $product->advertiser->telephone }}</p>
                 <p><strong>Data de Criação:</strong> {{ $product->created_at->format('d/m/Y H:i') }}</p>
             </div>
-            <form action="/checkout" method="POST">
-                @csrf
-                <input type="hidden" name="produto_id" value="{{ $product->id }}">
-                <input type="number" name="quantidade_produto" id="quantity" class="form-control" min="1" max="{{ $product->quantity }}" value="1">
-                <button type="submit" class="btn btn-primary mt-3">Comprar</button>
-            </form>
+            @if (auth()->user()->id !== $product->advertiser->id)
+                <form action="/checkout" method="POST">
+                    @csrf
+                    <input type="hidden" name="produto_id" value="{{ $product->id }}">
+                    <input type="number" name="quantidade_produto" id="quantity" class="form-control" min="1" max="{{ $product->quantity }}" value="1">
+                    <button type="submit" class="btn btn-primary mt-3">Comprar</button>
+                </form>
+            @else
+                <p class="text-muted">Você não pode comprar seu próprio produto.</p>
+            @endif
         </div>
     </div>
 
