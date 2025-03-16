@@ -49,7 +49,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form action="#" method="POST">
+                    <form action="{{ route('updateProduct', ['product' => $product->id]) }}" method="POST">
                         @csrf
                         @method('PUT')
                         <div>
@@ -98,7 +98,7 @@
                     <p>Tem certeza que deseja deletar o produto <strong>{{ $product->name }}</strong>?</p>
                 </div>
                 <div class="modal-footer">
-                    <form action="#" method="POST">
+                    <form action="{{ route('deleteProduct', ['product' => $product->id]) }}" method="POST">
                         @csrf
                         @method('DELETE')
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>

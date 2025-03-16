@@ -150,7 +150,7 @@ Route::get('/editarProdutos', [ProductController::class, 'index'])
     ->middleware('auth')
     ->name('editarProdutos');
 
-Route::post('/criarproduto', [ProductController::class, 'store'])
+Route::post('/editarProdutos', [ProductController::class, 'store'])
     ->name('criarproduto');
 
 Route::post('/editarProdutos', [ProductController::class, 'store'])
