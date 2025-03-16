@@ -15,7 +15,7 @@ Route::get('/welcome', function () {
     return view('welcome');
 });
 
-// Route::get('/welcome', [ProductController::class, 'search'])->name('products.search');
+Route::get('/welcome', [ProductController::class, 'search'])->name('products.search');
 
 //Paineis ADM
 Route::get('/painelAdm', function () {

@@ -25,10 +25,10 @@
             <div class="relative w-full max-w-2xl px-6 lg:max-w-7xl">
                 <header>@include('header')</header>
                 <h1 class="bg-red-500">Pagina de Produtos</h1>
-                {{-- <form action="{{ route('products.search') }}" method="GET">
+                <form action="{{ route('products.search') }}" method="GET">
                     <input type="text" name="search" placeholder="Search products..." value="{{ request('search') }}" style="color: black;">
                     <button type="submit" style="color: black;">Search</button>
-                </form> --}}
+                </form>
             
             
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
