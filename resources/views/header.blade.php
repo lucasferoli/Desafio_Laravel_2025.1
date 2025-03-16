@@ -20,7 +20,7 @@
   <header class="azul-claro-background py-3">
     <nav class="navbar navbar-expand-lg navbar-light">
       <div class="container">
-        <a class="navbar-brand font-weight-bold" href="/">Página de Produto</a>
+        <a class="navbar-brand font-weight-bold" href="/welcome">Página de Produto</a>
         <div class="navbar-nav ml-auto">
           @auth
             @if(auth()->guard('web')->check())

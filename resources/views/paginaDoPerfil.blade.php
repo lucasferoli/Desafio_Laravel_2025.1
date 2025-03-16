@@ -129,29 +129,32 @@
         <div class="modal-body">
         <form action="{{ route('criarproduto') }}" method="POST" enctype="multipart/form-data">
           @csrf
+
+
+
           <div class="mb-3">
           <label for="foto" class="form-label">Foto do Produto</label>
-          <input type="file" class="form-control" id="foto" name="foto" accept="image/*" required>
+          <input type="file" class="form-control" id="foto" name="photo" accept="image/*" required>
           </div>
           <div class="mb-3">
           <label for="nome" class="form-label">Nome do Produto</label>
-          <input type="text" class="form-control" id="nome" name="nome" required>
+          <input type="text" class="form-control" id="nome" name="name" required>
           </div>
           <div class="mb-3">
           <label for="preco" class="form-label">Preço</label>
-          <input type="number" class="form-control" id="preco" name="preco" step="0.01" required>
+          <input type="number" class="form-control" id="preco" name="price" step="0.01" required>
           </div>
           <div class="mb-3">
           <label for="quantidade" class="form-label">Quantidade</label>
-          <input type="number" class="form-control" id="quantidade" name="quantidade" required>
+          <input type="number" class="form-control" id="quantidade" name="quantity" required>
           </div>
           <div class="mb-3">
           <label for="descricao" class="form-label">Descrição</label>
-          <textarea class="form-control" id="descricao" name="descricao" rows="3" required></textarea>
+          <textarea class="form-control" id="descricao" name="description" rows="3" required></textarea>
           </div>
           <div class="mb-3">
           <label for="categoria" class="form-label">Categoria</label>
-          <input type="text" class="form-control" id="categoria" name="categoria" required>
+          <input type="text" class="form-control" id="categoria" name="category" required>
           </div>
           <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>

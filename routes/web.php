@@ -105,9 +105,11 @@ Route::get('/paginaDeProduto', function () {
 Route::get('/adicionarProduto', function () {
     return view('adicionarProduto');
 });
+
+
 Route::get('/paginaDoPerfil', function () {
     return view('paginaDoPerfil');
-});
+})->name('paginaDoPerfil');
 
 // Carrinho
 Route::match(['get', 'post'], '/checkout', function () {
@@ -150,12 +152,9 @@ Route::get('/editarProdutos', [ProductController::class, 'index'])
     ->middleware('auth')
     ->name('editarProdutos');
 
-Route::post('/editarProdutos', [ProductController::class, 'store'])
-    ->name('criarproduto');
-
-Route::post('/editarProdutos', [ProductController::class, 'store'])
+Route::post('/criarproduto', [ProductController::class, 'store'])
     ->middleware('auth')
-    ->name('createProduct');
+    ->name('criarproduto');
 
 Route::put('editarProdutos/{product}', [ProductController::class, 'update'])
     ->middleware('auth')
