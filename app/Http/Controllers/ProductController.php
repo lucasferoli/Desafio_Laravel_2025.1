@@ -8,17 +8,23 @@ use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
-    // Method to display the list of products
     public function index()
     {
         $products = Product::all();
         return view('admProdutos', compact('products'));
     }
 
-    // Method to handle product creation
+    public function search(Request $request)
+    {
+        $search = $request->input('search');
+        $products = Product::where('name', 'like', "%{$search}%")
+                            ->orWhere('description', 'like', "%{$search}%")
+                            ->get();
+        return view('welcome', compact('products'));
+    }
+
     public function store(Request $request)
     {
-        // Validate the request
         $request->validate([
             'foto' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'nome' => 'required|string|max:255',
@@ -28,14 +34,12 @@ class ProductController extends Controller
             'categoria' => 'required|string|max:255',
         ]);
 
-        // Handle the file upload
         if ($request->hasFile('foto')) {
             $image = $request->file('foto');
             $imageName = time() . '.' . $image->getClientOriginalExtension();
-            $image->storeAs('public/products', $imageName); // Save the file in the storage
+            $image->storeAs('public/products', $imageName);
         }
 
-        // Create a new product
         $product = new Product();
         $product->foto = $imageName;
         $product->nome = $request->input('nome');
@@ -45,7 +49,6 @@ class ProductController extends Controller
         $product->categoria = $request->input('categoria');
         $product->save();
 
-        // Redirect back with a success message
         return redirect()->route('admProdutos')->with('success', 'Produto criado com sucesso!');
     }
 }
