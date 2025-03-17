@@ -24,7 +24,7 @@ class DatabaseSeeder extends Seeder
     {
         $imagePath = 'C:/Users/User/Desktop/Desafio Laravel - 2025.1/Desafio_Laravel_2025.1-1/resources/assets/dava.jpeg';
 
-        User::factory(6)->create()->each(function ($user) use ($imagePath) {
+        User::factory(18)->create()->each(function ($user) use ($imagePath) {
             $user->update([
                 'name' => $this->faker->name,
                 'email' => $this->faker->unique()->safeEmail,
@@ -55,7 +55,22 @@ class DatabaseSeeder extends Seeder
             ]);
         });
 
-        Product::factory(6)->create()->each(function ($product) use ($imagePath) {
+        Admin::factory(5)->create()->each(function ($admin, $index) use ($imagePath) {
+            $admin->update([
+                'name' => $this->faker->name,
+                'email' => $this->faker->unique()->safeEmail,
+                'password' => bcrypt('password'),
+                'address' => $this->faker->address,
+                'telephone' => $this->faker->phoneNumber,
+                'birthday_date' => $this->faker->date,
+                'cpf' => $this->faker->numerify('#########'),
+                'photo' => $imagePath,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]);
+        });
+
+        Product::factory(36)->create()->each(function ($product) use ($imagePath) {
             $product->update([
                 'photo' => $imagePath,
                 'name' => $this->faker->word,

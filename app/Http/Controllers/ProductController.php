@@ -17,6 +17,8 @@ class ProductController extends Controller
         return view('editarProdutos', compact('products'));
     }
 
+    
+
     public function search(Request $request)
     {
         $search = $request->query('search');
@@ -25,8 +27,6 @@ class ProductController extends Controller
                 return $query->where('name', 'like', "%{$search}%");
             })->get();
 
-    //     return response() ->json($products);
-    // }
 
     return view('welcome', compact('products'));
 }

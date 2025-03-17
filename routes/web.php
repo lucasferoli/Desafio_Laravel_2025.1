@@ -136,6 +136,7 @@ Route::get('/dashboard', function () {
     return view('welcome');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+
 //Editar proprio perfil
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

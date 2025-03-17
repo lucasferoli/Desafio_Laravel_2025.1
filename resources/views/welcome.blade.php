@@ -37,13 +37,7 @@
             
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
 
-                    @php
-                        $search = request('search');
-                        $products = App\Models\Product::when($search, function ($query, $search) {
-                            return $query->where('name', 'like', "%{$search}%")
-                                         ->orWhere('category', 'like', "%{$search}%");
-                        })->orderBy('id')->take(24)->get();
-                    @endphp
+
 
                     @foreach ($products as $product)
                         <div class="outline outline-1 outline-gray-500">
@@ -52,6 +46,9 @@
                     @endforeach
                 </div>
             </div>
+        </div>
+        <div class="mt-4">
+            {{ $products->links() }}
         </div>
     </div>
     <!-- Bootstrap JS and dependencies -->
