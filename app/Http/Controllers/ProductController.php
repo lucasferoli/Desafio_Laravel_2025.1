@@ -19,12 +19,17 @@ class ProductController extends Controller
 
     public function search(Request $request)
     {
-        $search = $request->input('search');
-        $products = Product::where('name', 'like', "%{$search}%")
-                            ->orWhere('description', 'like', "%{$search}%")
-                            ->get();
-        return view('welcome', compact('products'));
-    }
+        $search = $request->query('search');
+
+        $products = Product::when($search, function($query) use ($search){
+                return $query->where('name', 'like', "%{$search}%");
+            })->get();
+
+    //     return response() ->json($products);
+    // }
+
+    return view('welcome', compact('products'));
+}
 
     public function showDetails($id)
     {
@@ -49,10 +54,6 @@ class ProductController extends Controller
             $data['photo'] = time() . '.' . $image->getClientOriginalExtension();
             $image->storeAs('public/products', $data['photo']);
         }
-
-
-
-
 
         $data['advertiser_id'] = Auth::user()->id;
 

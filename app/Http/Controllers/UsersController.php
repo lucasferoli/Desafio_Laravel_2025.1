@@ -72,4 +72,36 @@ class UsersController extends Controller
 
 		return redirect()->route('admUsuarios')->with('success', 'User deleted successfully');
 	}
+	
+    public function getUsers(Request $request)
+    {
+        return $this->getPaginatedResponse(User::query());
+    }
+
+    public function getAdmins(Request $request)
+    {
+        return $this->getPaginatedResponse(Admin::query());
+    }
+
+    private function getPaginatedResponse($query)
+    {
+        $perPage = 6;
+        $users = $query->paginate($perPage);
+
+        // Formatar os dados conforme necessário
+        $formattedUsers = $users->map(function ($user) {
+            return [
+                'name' => $user->name,
+                'photo' => $user->photo
+            ];
+        });
+
+        return response()->json([
+            'users' => $formattedUsers,
+            'totalPages' => $users->lastPage(),
+            'status' => 200
+        ]);
+    }
+}
+
 }

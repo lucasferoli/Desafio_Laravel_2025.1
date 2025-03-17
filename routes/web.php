@@ -11,10 +11,6 @@ use App\Http\Controllers\MovimentacoesController;
 
 
 //Home
-Route::get('/welcome', function () {
-    return view('welcome');
-});
-
 Route::get('/welcome', [ProductController::class, 'search'])->name('products.search');
 
 //Paineis ADM
@@ -164,6 +160,9 @@ Route::delete('editarProdutos/{product}', [ProductController::class, 'destroy'])
     ->middleware('auth')
     ->name('deleteProduct');
 
+//API de Usuarios
+Route::get('/users', [UsersController::class, 'getUsers']);
+Route::get('/admins', [UsersController::class, 'getAdmins']);
 
 
 require __DIR__.'/auth.php';
