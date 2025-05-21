@@ -4,6 +4,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Pagina Inicial</title>
+    <!-- Favicon (32x32 for bigger display) -->
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('images\site\SiriusPixels.png') }}">
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
@@ -19,7 +21,7 @@
         <div class="relative flex flex-col items-center justify-center">
             <div class="relative w-full max-w-2xl px-6 lg:max-w-7xl">
                 <header>@include('header')</header>
-                <h1 class="bg-red-500 mb-4">Pagina de Produtos</h1>
+                <h1>Pagina de Produtos</h1>
 
                 <form action="{{ route('products.search') }}" method="GET" class="mb-4">
                     <div class="input-group">
