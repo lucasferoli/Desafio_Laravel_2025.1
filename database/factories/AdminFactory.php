@@ -14,11 +14,11 @@ class AdminFactory extends Factory
         return [
             'name' => $this->faker->name,
             'email' => $this->faker->unique()->safeEmail,
-            'password' => bcrypt('password'), // or use Hash::make('password')
+            'password' => bcrypt('password'), 
             'address' => $this->faker->address,
             'telephone' => $this->faker->phoneNumber,
             'birthday_date' => $this->faker->date,
-            'cpf' => $this->faker->numerify('###########'), // Generates a random 11-digit number
+            'cpf' => $this->faker->numerify('###########'), 
             'photo' => $this->faker->optional()->imageUrl,
         ];
     }

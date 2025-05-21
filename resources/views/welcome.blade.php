@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="pt-BR">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Laravel</title>
+    <title>Pagina Inicial</title>
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
@@ -12,33 +12,25 @@
     <!-- Styles / Scripts -->
     @if (file_exists(public_path('build/manifest.json')) || file_exists(public_path('hot')))
         @vite(['resources/css/app.css', 'resources/js/app.js'])
-    @else
-        <style>
-            /* Your existing inline styles */
-        </style>
     @endif
 </head>
-<body class="font-sans antialiased dark:bg-black dark:text-white/50">
-    <div class="bg-gray-50 text-black/50 dark:bg-black dark:text-white/50">
-        <img id="background" class="absolute -left-20 top-0 max-w-[877px]" src="https://laravel.com/assets/img/welcome/background.svg" alt="Laravel background" />
-        <div class="relative min-h-screen flex flex-col items-center justify-center selection:bg-[#FF2D20] selection:text-white">
+<body class="font-sans antialiased" style="background-color: white;">
+    <div class="min-h-screen">
+        <div class="relative flex flex-col items-center justify-center">
             <div class="relative w-full max-w-2xl px-6 lg:max-w-7xl">
                 <header>@include('header')</header>
-                <h1 class="bg-red-500">Pagina de Produtos</h1>
+                <h1 class="bg-red-500 mb-4">Pagina de Produtos</h1>
 
                 <form action="{{ route('products.search') }}" method="GET" class="mb-4">
                     <div class="input-group">
-                        <input type="text" name="search" class="form-control form-control-lg" placeholder="Procurar Produtos ou Categoria..." value="{{ request('search') }}" style="color: black;">
+                        <input type="text" name="search" class="form-control form-control-lg" placeholder="Procurar Produtos ou Categoria..." value="{{ request('search') }}">
                         <div class="input-group-append">
-                            <button type="submit" class="btn btn-primary btn-lg" style="color: white;">Procurar</button>
+                            <button type="submit" class="btn btn-primary btn-lg">Procurar</button>
                         </div>
                     </div>
                 </form>
             
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-
-
-
                     @foreach ($products as $product)
                         <div class="outline outline-1 outline-gray-500">
                             @include('modal-produto', ['randomProduct' => $product])
@@ -46,9 +38,6 @@
                     @endforeach
                 </div>
             </div>
-        </div>
-        <div class="mt-4">
-            {{ $products->links() }}
         </div>
     </div>
     <!-- Bootstrap JS and dependencies -->

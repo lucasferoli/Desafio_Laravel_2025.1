@@ -13,10 +13,11 @@ use App\Http\Controllers\MovimentacoesController;
 //Home
 Route::get('/welcome', [ProductController::class, 'search'])->name('products.search');
 
-//Paineis ADM
-Route::get('/painelAdm', function () {
-    return view('painelAdm');
-})->middleware('auth:admin')->name('painelAdm');
+
+Route::middleware('auth:admin')->group(function () {
+    Route::get('/painelAdm', function () {
+        return view('painelAdm');})->name('painelAdm');
+});
 
 //Painel ADM Usuario
 Route::get('/admUsuarios', [UsersController::class, 'index'])
