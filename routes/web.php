@@ -12,88 +12,68 @@ use App\Http\Controllers\MovimentacoesController;
 
 //Home
 Route::get('/welcome', [ProductController::class, 'search'])->name('products.search');
+// Rotas protegidas
+Route::middleware(['auth:admin'])->group(function () {
+    // Painel do Administrador
+    Route::get('/painelAdm', function () { return view('painelAdm'); })->name('painelAdm');
 
+    // Administrador Administradores
+    Route::get('/admAdministradores', [UsersController::class, 'index'])->name('admAdministradores');
+    Route::post('/admAdministrador', [UsersController::class, 'store'])->name('createAdministrador');
+    Route::put('admAdministrador/{admin}', [UsersController::class, 'update'])->name('updateAdministrador');
+    Route::delete('admAdministrador/{admin}', [UsersController::class, 'destroy'])->name('deleteAdministrador');
+    Route::get('/admAdministrador', function () {
+        return view('admAdministrador');
+    })->name('admAdministrador');
 
-Route::middleware('auth:admin')->group(function () {
-    Route::get('/painelAdm', function () {
-        return view('painelAdm');})->name('painelAdm');
-});
+    // Administrador Usuários
+    Route::get('/admUsuarios', [UsersController::class, 'index'])->name('admUsuarios');
+    Route::post('/admUsuario', [UsersController::class, 'store'])->name('createUser');
+    Route::put('admUsuario/{user}', [UsersController::class, 'update'])->name('updateUser');
+    Route::delete('admUsuario/{user}', [UsersController::class, 'destroy'])->name('deleteUser');
 
-//Painel ADM Usuario
-Route::get('/admUsuarios', [UsersController::class, 'index'])
-    ->middleware('auth:admin')
-    ->name('admUsuarios');
-
-Route::post('/admUsuario', [UsersController::class, 'store'])
-    ->middleware('auth:admin')
-    ->name('createUser');
-
-Route::put('admUsuario/{user}', [UsersController::class, 'update'])
-    ->middleware('auth:admin')
-    ->name('updateUser');
-
-Route::delete('admUsuario/{user}', [UsersController::class, 'destroy'])
-    ->middleware('auth:admin')
-    ->name('deleteUser');
-
-Route::get('/admAdministrador', function () {
-    return view('admAdministrador');
-})->middleware('auth:admin')->name('admAdministrador');
-
-//Painel ADM Administrador
-Route::get('/admAdministradores', [UsersController::class, 'index'])
-    ->middleware('auth:admin')
-    ->name('admAdministradores');
-
-Route::post('/admAdministrador', [UsersController::class, 'store'])
-    ->middleware('auth:admin')
-    ->name('createAdministrador');
-
-Route::put('admAdministrador/{admin}', [UsersController::class, 'update'])
-    ->middleware('auth:admin')
-    ->name('updateAdministrador');
-
-Route::delete('admAdministrador/{admin}', [UsersController::class, 'destroy'])
-    ->middleware('auth:admin')
-    ->name('deleteAdministrador');
-
-Route::middleware('auth')->group(function () {
+    // Perfil do usuário (admin)
     Route::get('/user/profile', [ProfileController::class, 'edit'])->name('usuarioEditar');
     Route::patch('/user/profile', [ProfileController::class, 'update'])->name('usuarioUpdate');
     Route::delete('/user/profile', [ProfileController::class, 'delete'])->name('usuarioDelete');
+
+    // Página de Saque e Saque
+    Route::get('/paginaDeSaque', function () { return view('paginaDeSaque'); })->name('paginaDeSaque');
+    Route::post('/sacar', [SacarController::class, 'sacar'])->name('sacar');
+
+    // Histórico de Compras e PDF
+    Route::get('/historico-compras', [MovimentacoesController::class, 'index'])->name('historico-compras');
+    Route::get('/historico-compras-pdf', [MovimentacoesController::class, 'generatePdf'])->name('historico-compras-pdf');
+
+    // Histórico de Vendas e PDF
+    Route::get('/historico-vendas', [MovimentacoesController::class, 'indexVendas'])->name('historico-vendas');
+    Route::get('/historico-vendas-pdf', [MovimentacoesController::class, 'generateVendasPdf'])->name('historico-vendas-pdf');
+
+    // Rotas para controlar Produtos
+    Route::get('/editarProdutos', [ProductController::class, 'index'])->name('editarProdutos');
+    Route::post('/criarproduto', [ProductController::class, 'store'])->name('criarproduto');
+    Route::put('editarProdutos/{product}', [ProductController::class, 'update'])->name('updateProduct');
+    Route::delete('editarProdutos/{product}', [ProductController::class, 'destroy'])->name('deleteProduct');
+
+    // Rotas para mandar e-mail
+    Route::get('/contact', [ContactController::class, 'index'])->name('contact.index');
+    Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
+
+    
 });
 
+// Dashboard e perfil do usuário autenticado (qualquer auth)
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::get('/dashboard', function () {
+        return view('welcome');
+    })->name('dashboard');
+});
 
-
-//Pagina de Saque
-Route::get('/paginaDeSaque', function () {
-        return view('paginaDeSaque');
-    })->middleware('auth')->name('paginaDeSaque');
-
-
-Route::post('/sacar', [SacarController::class, 'sacar'])->name('sacar')->middleware('auth');
-
-
-//Historico De Compras
-Route::get('/historico-compras', [MovimentacoesController::class, 'index'])
-    ->middleware('auth')
-    ->name('historico-compras');
-
-//PDF do Historico de Compras
-Route::get('/historico-compras-pdf', [MovimentacoesController::class, 'generatePdf'])
-    ->middleware('auth')
-    ->name('historico-compras-pdf');
-
-//Historico de Vendas
-Route::get('/historico-vendas', [MovimentacoesController::class, 'indexVendas'])
-->middleware('auth')
-->name('historico-vendas');
-
-//PDF do Historico de Vendas
-Route::get('/historico-vendas-pdf', [MovimentacoesController::class, 'generateVendasPdf'])
-    ->middleware('auth')
-    ->name('historico-vendas-pdf');
-
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
 
 //Paginas Aleatorias
 Route::get('/paginaDeProduto', function () {
@@ -126,41 +106,8 @@ Route::get('/erroDePagamento', function () {
 Route::post('/checkout', [PagSeguroController::class, 'createCheckout']);
 
 
-//Rotas para mandar e-mail
-Route::middleware('auth:admin')->group(function () {
-    Route::get('/contact', [ContactController::class, 'index'])->name('contact.index');
-    Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
-});
-
-//Dashboard
-Route::get('/dashboard', function () {
-    return view('welcome');
-})->middleware(['auth', 'verified'])->name('dashboard');
 
 
-//Editar proprio perfil
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
-
-//Rotas para controlar Produtos
-Route::get('/editarProdutos', [ProductController::class, 'index'])
-    ->middleware('auth')
-    ->name('editarProdutos');
-
-Route::post('/criarproduto', [ProductController::class, 'store'])
-    ->middleware('auth')
-    ->name('criarproduto');
-
-Route::put('editarProdutos/{product}', [ProductController::class, 'update'])
-    ->middleware('auth')
-    ->name('updateProduct');
-
-Route::delete('editarProdutos/{product}', [ProductController::class, 'destroy'])
-    ->middleware('auth')
-    ->name('deleteProduct');
 
 //API de Usuarios
 Route::get('/users', [UsersController::class, 'getUsers']);
